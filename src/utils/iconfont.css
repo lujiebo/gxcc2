@@ -1,0 +1,242 @@
+
+[class*="icon-"] {
+	font-family: "iconfont";
+	font-size: inherit;
+	font-style: normal;
+}
+
+@font-face {
+  font-family: "iconfont"; /* Project id 3305069 */
+  src: url('@/utils/iconfont.woff2?t=1658196698993') format('woff2'),
+       url('@/utils/iconfont.woff?t=1658196698993') format('woff'),
+       url('@/utils/iconfont.ttf?t=1658196698993') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-suoyoubaoxiu:before {
+  content: "\e62b";
+}
+
+.icon-icon_toolkit:before {
+  content: "\e67e";
+}
+
+.icon-mic-fill:before {
+  content: "\e808";
+}
+
+.icon-file-list-2-line:before {
+  content: "\e7af";
+}
+
+.icon-history-fill:before {
+  content: "\ebf8";
+}
+
+.icon-scan:before {
+  content: "\e612";
+}
+
+.icon-star-fill:before {
+  content: "\e87a";
+}
+
+.icon-bookmark:before {
+  content: "\e606";
+}
+
+.icon-horn:before {
+  content: "\e641";
+}
+
+.icon-Rightbutton-fill:before {
+  content: "\e78a";
+}
+
+.icon-send-plane-line:before {
+  content: "\e6ea";
+}
+
+.icon-close-fill:before {
+  content: "\e84b";
+}
+
+.icon-hospital-line:before {
+  content: "\e6ba";
+}
+
+.icon-aed:before {
+  content: "\ecc9";
+}
+
+.icon-device-parking:before {
+  content: "\e6d3";
+}
+
+.icon-bubble-chart-line:before {
+  content: "\e6c7";
+}
+
+.icon-feedback-line:before {
+  content: "\e6fb";
+}
+
+.icon-tools-line:before {
+  content: "\e728";
+}
+
+.icon-gps-fill:before {
+  content: "\e73f";
+}
+
+.icon-guide-line:before {
+  content: "\e7f1";
+}
+
+.icon-route-line:before {
+  content: "\e7f5";
+}
+
+.icon-play-circle-fill:before {
+  content: "\e80f";
+}
+
+.icon-play-circle-line:before {
+  content: "\e810";
+}
+
+.icon-yumaoqiu:before {
+  content: "\e60b";
+}
+
+.icon-basketball-fill:before {
+  content: "\eb30";
+}
+
+.icon-football-fill:before {
+  content: "\eb46";
+}
+
+.icon-ping-pong-fill:before {
+  content: "\eb5b";
+}
+
+.icon-question-fill:before {
+  content: "\e86a";
+}
+
+.icon-send-plane-fill:before {
+  content: "\e6e8";
+}
+
+.icon-medal-fill:before {
+  content: "\e6e0";
+}
+
+.icon-hearts-line:before {
+  content: "\e7c1";
+}
+
+.icon-run-line:before {
+  content: "\e7f4";
+}
+
+.icon-vidicon-line:before {
+  content: "\e824";
+}
+
+.icon-arrow-right-s-line:before {
+  content: "\e844";
+}
+
+.icon-star-line:before {
+  content: "\e879";
+}
+
+.icon-yundongbisai:before {
+  content: "\e682";
+}
+
+.icon-soccer-one:before {
+  content: "\e696";
+}
+
+.icon-restart-line:before {
+  content: "\e74a";
+}
+
+.icon-delete-bin-line:before {
+  content: "\e850";
+}
+
+.icon-vidicon-fill:before {
+  content: "\e823";
+}
+
+.icon-arrow-down-s-fill:before {
+  content: "\e83d";
+}
+
+.icon-filter-2-fill:before {
+  content: "\e856";
+}
+
+.icon-search-line:before {
+  content: "\e86e";
+}
+
+.icon-map-pin-line:before {
+  content: "\e7f0";
+}
+
+.icon-road-map-fill:before {
+  content: "\e7f3";
+}
+
+.icon-database-2-line:before {
+  content: "\e73c";
+}
+
+.icon-map-pin-user-line:before {
+  content: "\e7ef";
+}
+
+.icon-eye-line:before {
+  content: "\e855";
+}
+
+.icon-time-line:before {
+  content: "\e87b";
+}
+
+.icon-fire:before {
+  content: "\e635";
+}
+
+.icon-map:before {
+  content: "\e77e";
+}
+
+.icon-shexiangji:before {
+  content: "\e60e";
+}
+
+.icon-sports:before {
+  content: "\e63a";
+}
+
+.icon-hearts-fill:before {
+  content: "\e911";
+}
+
+.icon-service-fill:before {
+  content: "\e6e9";
+}
+

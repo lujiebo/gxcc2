@@ -1,0 +1,366 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
+			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+		}
+	},
+	"pages": [{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarTitleText": "多艺点空间",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/index/loading",
+		"style": {
+			"navigationBarTitleText": "多艺点空间"
+		}
+	}, {
+		"path": "pages/yuyue/index",
+		"style": {
+			"navigationBarTitleText": "预约场地",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/yuyue/search",
+		"style": {
+			"navigationBarTitleText": "搜索",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/user/user",
+		"style": {
+			"navigationBarTitleText": "个人中心",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/user/myYuyue",
+		"style": {
+			"navigationBarTitleText": "我的预约",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/user/yuyueDetail",
+		"style": {
+			"navigationBarTitleText": "预约详情",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/user/pingjia",
+		"style": {
+			"navigationBarTitleText": "我的评价",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/yuyue/yuyueDetail",
+		"style": {
+			"navigationBarTitleText": "预约",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/yuyue/ruchang",
+		"style": {
+			"navigationBarTitleText": "入场预约填写",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/yuyue/shoufei",
+		"style": {
+			"navigationBarTitleText": "收费预约填写",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/yuyue/success",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/zhoubian/index",
+		"style": {
+			"navigationBarTitleText": "找周边",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/zhoubian/search",
+		"style": {
+			"navigationBarTitleText": "搜索",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/activity/activity",
+		"style": {
+			"navigationBarTitleText": "悦运动",
+			"enablePullDownRefresh": true
+		}
+
+	},{
+		"path": "pages/activity/yuexuanjiang",
+		"style": {
+			"navigationBarTitleText": "悦宣讲",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/activity/success",
+		"style": {
+			"navigationBarTitleText": "报名成功",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/activity/success2",
+		"style": {
+			"navigationBarTitleText": "发布成功",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/volunteer/volunteer",
+		"style": {
+			"navigationBarTitleText": "做志愿",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/activity/team",
+		"style": {
+			"navigationBarTitleText": "我要组队",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/activity/allActivity",
+		"style": {
+			"navigationBarTitleText": "全部活动",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/activity/allVideo",
+		"style": {
+			"navigationBarTitleText": "全部视频",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/activity/activityDetail",
+		"style": {
+			"navigationBarTitleText": "活动详情",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/volunteer/volunteerDetail",
+		"style": {
+			"navigationBarTitleText": "活动详情",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/volunteer/success",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/user/myActivity",
+		"style": {
+			"navigationBarTitleText": "我的活动",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/activity/videoDetail",
+		"style": {
+			"navigationBarTitleText": "视频",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/user/myCollect",
+		"style": {
+			"navigationBarTitleText": "我的收藏",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/user/mySub",
+		"style": {
+			"navigationBarTitleText": "我的发布",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/user/activityDetail",
+		"style": {
+			"navigationBarTitleText": "活动签到码",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/activity/chooseSchool",
+		"style": {
+			"navigationBarTitleText": "选择地点",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/activity/xunjiang",
+		"style": {
+			"navigationBarTitleText": "我要宣讲",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/activity/kepu",
+		"style": {
+			"navigationBarTitleText": "我要科普",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/admin/index",
+		"style": {
+			"navigationBarTitleText": "扫码核销",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/admin/success",
+		"style": {
+			"navigationBarTitleText": "扫码成功",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/admin/record",
+		"style": {
+			"navigationBarTitleText": "今日记录",
+			"enablePullDownRefresh": false
+		}
+
+	}    ,{
+            "path" : "pages/yuyue/map",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "预约场地",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/user/myBaoxiu",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的报修",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/user/addBaixiu",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "新增报修",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/user/baoxiuDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "报修详情",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+            "path" : "pages/user/success",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/user/repair",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "报修处理",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/user/toRepair",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "提交处理",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/activity/historyDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "活动详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "多艺点空间",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"color": "#101010",
+		"selectedColor": "#428FFC",
+		"borderStyle": "white",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/tab1.png",
+			"selectedIconPath": "static/tab1-fill.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/yuyue/index",
+			"iconPath": "static/tab2.png",
+			"selectedIconPath": "static/tab2-fill.png",
+			"text": "预约操场"
+		}, {
+			"pagePath": "pages/zhoubian/index",
+			"iconPath": "static/gps-line.png",
+			"selectedIconPath": "static/gps-fill.png",
+			"text": "找周边"
+		}, {
+			"pagePath": "pages/user/user",
+			"iconPath": "static/tab5.png",
+			"selectedIconPath": "static/tab5-fill.png",
+			"text": "个人中心"
+		}]
+	}
+}

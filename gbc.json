@@ -1,0 +1,9 @@
+{
+
+"type":"gov-build-config",
+
+"version":"1",
+
+"outputPath":"dist/build/h5"
+
+}
