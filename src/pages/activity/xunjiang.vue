@@ -126,7 +126,8 @@
 				picUped: true,
 				activityid: null,
 				type: 2, //0：志愿活动1：组队活动 2：宣讲活动 3：科普活动
-				action: 'https://playground.mycej.com/index.php/api/activity/uploadCover',
+				// action: 'https://playground.mycej.com/index.php/api/activity/uploadCover',
+				action:'/api/sys/document/101',
 				schoolName: '',
 				picList:[],
 				params: {

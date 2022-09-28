@@ -16,7 +16,7 @@
 			</swiper>
 
 			<view class="flex space-around u-m-t-30">
-				<view class="navItem" @click="tabNav(1)">
+				<!-- 				<view class="navItem" @click="tabNav(1)">
 					<view class="icon-map u-font-32" style="color: #3A89EB;"></view>
 					<view>悦运动</view>
 				</view>
@@ -26,16 +26,28 @@
 				</view>
 				<view class="navItem" @click="tabNav(3)">
 					<view class="icon-hearts-fill u-font-46" style="color: #FF6A2A;"></view>
-					<view>悦志愿</view>
-				</view>
-				<!-- <view class="navItem" @click="tabNav(4)">
-					<view class="icon-gps-fill u-font-46" style="color: #00B872;"></view>
-					<view>找周边</view>
+					<view>悦生活</view>
 				</view> -->
+				<view class="navItem" @click="tabNav(4)">
+					<view class="icon-xuqiudengji u-font-40" style="color: #00B872;"></view>
+					<view>场地登记</view>
+				</view>
+				<view class="navItem" @click="tabNav(5)">
+					<view class="icon-xuqiudengji u-font-40" style="color: #3A89EB;"></view>
+					<view>学生登记</view>
+				</view>
+				<view class="navItem" @click="tabNav(6)">
+					<view class="icon-xuqiudengji u-font-40" style="color: #F99D18;"></view>
+					<view>教师登记</view>
+				</view>
+				<view class="navItem" @click="tabNav(7)">
+					<view class="icon-kejianshangchuan u-font-40" style="color: #FF6A2A;"></view>
+					<view>课件上传</view>
+				</view>
 			</view>
 		</view>
 
-		<view class="item">
+		<!-- <view class="item">
 			<view class="title-area">
 				<view class="title">热门场地<span class="icon-fire u-m-l-10"
 						style="color: #FF6A2A;font-weight: normal;"></span></view>
@@ -115,7 +127,7 @@
 				</view>
 			</view>
 
-		</view>
+		</view> -->
 
 		<!-- <view class="item">
 			<view class="title-area">
@@ -152,141 +164,151 @@
 		data() {
 			return {
 				topImg: [{
-					url: '../../static/v2_q9yf1a.png'
+					url: '../../static/v1_top1.jpeg'
 				}, {
-					url: '../../static/v2_q9yf1g.png'
+					url: '../../static/v1_top2.jpeg'
 				}, {
-					url: '../../static/v2_q9yf1m.png'
-				}, {
-					url: '../../static/v2_q9yf1u.png'
-				}, ],
+					url: '../../static/v1_top3.jpeg'
+				}],
 				activity: [],
 				video: [],
 				appointschools: [],
 				uiStyle: getApp().globalData.uiStyle,
-				phoneNum: '0574-89590704',
-				show: true,
+				phoneNum: '0574-XXXXXXXX',
+				show: false,
+				picList: []
 			}
 		},
 		onLoad() {
 			// this.getActivity()
 			// this.getVideo()
-			
-			
-			const sUserAgent = window.navigator.userAgent.toLowerCase()
-			const bIsDtDreamApp = sUserAgent.indexOf('dtdreamweb') > -1 // 浙里办APP
-			const bIsAlipayMini = sUserAgent.indexOf('miniprogram') > -1 && sUserAgent.indexOf('alipay') > -1 //支付宝
+			console.log(11)
 
-			var search = window.location.search
-			var str = search.substring(1, search.length);
-			var arr = str.split("&");
-			var obj = new Object();
-			// 将每一个数组元素以=分隔并赋给obj对象
-			for (var i = 0; i < arr.length; i++) {
-				var tmp_arr = arr[i].split("=");
-				obj[decodeURIComponent(tmp_arr[0])] = decodeURIComponent(tmp_arr[1]);
-			}
-			
-			var schoolId = ''
-			
-			if (obj['schoolId']) {
-				schoolId = obj['schoolId']
-			}
-			if (obj['ticket'] && getApp().globalData.ticket == null) {
+			// uni.reLaunch({
+			// 	url: '../admin/index?title=test'
+			// })
+
+			// uni.navigateTo({
+			// 	url:'../yuyue/ruchang?id=1'
+			// })
 
 
-				aplus_queue.push({
-					'action': 'aplus.sendPV',
-					'arguments': [{
-						is_auto: false
-					}, { // 自定义 PV 参数 key-value 键值对（只能是这种平铺的 json，不能做多层 嵌套），如： 
-						isMini: true,
-						miniAppId: '2002201920',
-						miniAppName: '共享操场'
-					}]
-				})
-				this.show = false
-				getApp().globalData.ticket = obj['ticket']; //放入全局变量
-				this.http.post('login/notify', {
-					ticket: obj['ticket']
-				}, 1).then((data) => {
-					if (data.token) {
-						uni.setStorageSync('user-token', data.token)
-						if(data.role == 1) {
-							uni.reLaunch({
-								url:'../admin/index?title=' + data.schoolname
-							})
-						} else {
-							if(obj['sp']) {
-								uni.navigateTo({
-									url:'../yuyue/ruchang?id='+obj['sp']
-								})
-							}
-						}
-						this.getData()
+			// const sUserAgent = window.navigator.userAgent.toLowerCase()
+			// const bIsDtDreamApp = sUserAgent.indexOf('dtdreamweb') > -1 // 浙里办APP
+			// const bIsAlipayMini = sUserAgent.indexOf('miniprogram') > -1 && sUserAgent.indexOf('alipay') > -1 //支付宝
 
-					}
-				})
-			} else if (bIsDtDreamApp) {
-				this.watchApp(schoolId);
-			} else if (bIsAlipayMini) {
-				this.watchApply(schoolId);
-			}
+			// var search = window.location.search
+			// var str = search.substring(1, search.length);
+			// var arr = str.split("&");
+			// var obj = new Object();
+			// // 将每一个数组元素以=分隔并赋给obj对象
+			// for (var i = 0; i < arr.length; i++) {
+			// 	var tmp_arr = arr[i].split("=");
+			// 	obj[decodeURIComponent(tmp_arr[0])] = decodeURIComponent(tmp_arr[1]);
+			// }
+
+			// var schoolId = ''
+
+			// if (obj['schoolId']) {
+			// 	schoolId = obj['schoolId']
+			// }
+			// if (obj['ticket'] && getApp().globalData.ticket == null) {
+
+
+			// 	aplus_queue.push({
+			// 		'action': 'aplus.sendPV',
+			// 		'arguments': [{
+			// 			is_auto: false
+			// 		}, { // 自定义 PV 参数 key-value 键值对（只能是这种平铺的 json，不能做多层 嵌套），如： 
+			// 			isMini: true,
+			// 			miniAppId: '2002201920',
+			// 			miniAppName: '共享操场'
+			// 		}]
+			// 	})
+			// 	this.show = false
+			// 	getApp().globalData.ticket = obj['ticket']; //放入全局变量
+			// 	this.http.post('login/notify', {
+			// 		ticket: obj['ticket']
+			// 	}, 1).then((data) => {
+			// 		if (data.token) {
+			// 			uni.setStorageSync('user-token', data.token)
+			// 			if(data.role == 1) {
+			// 				uni.reLaunch({
+			// 					url:'../admin/index?title=' + data.schoolname
+			// 				})
+			// 			} else {
+			// 				if(obj['sp']) {
+			// 					uni.navigateTo({
+			// 						url:'../yuyue/ruchang?id='+obj['sp']
+			// 					})
+			// 				}
+			// 			}
+			// this.getData()
+
+			// 		}
+			// 	})
+			// } else if (bIsDtDreamApp) {
+			// 	this.watchApp(schoolId);
+			// } else if (bIsAlipayMini) {
+			// 	this.watchApply(schoolId);
+			// }
 
 
 		},
 		methods: {
 			isLoad(schoolId) {
-				// uni.navigateTo({
-				// 	url:'../admin/index'
-				// })
-				
-				// this.show = false
-				// this.getData()
-				// if(schoolId) {
-				// 	uni.navigateTo({
-				// 		url:'../yuyue/ruchang?id='+schoolId
-				// 	})
-				// }
-				
-				if (bIsAlipayMini) {
-					window.location.href =
-						"https://puser.zjzwfw.gov.cn/sso/alipay.do?action=ssoLogin&servicecode=BCDSGA_75dc68cd4b42823600c378cac7fe33b8&goto="+schoolId
-				} else {
-					window.location.href =
-						"https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=BCDSGA_75dc68cd4b42823600c378cac7fe33b8&goto="+schoolId
+				uni.navigateTo({
+					url: '../admin/index'
+				})
+
+				this.show = false
+				this.getData()
+				if (schoolId) {
+					uni.navigateTo({
+						url: '../yuyue/ruchang?id=' + schoolId
+					})
 				}
-				
+
+
+				//单点
+				// if (bIsAlipayMini) {
+				// 	window.location.href =
+				// 		"https://puser.zjzwfw.gov.cn/sso/alipay.do?action=ssoLogin&servicecode=BCDSGA_75dc68cd4b42823600c378cac7fe33b8&goto="+schoolId
+				// } else {
+				// 	window.location.href =
+				// 		"https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=BCDSGA_75dc68cd4b42823600c378cac7fe33b8&goto="+schoolId
+				// }
+
 				// 或者使用replace()
 				// window.location.replace('https://puser.zjzwfw.gov.cn/sso/alipay.do?action=ssoLogin&servicecode=【接入代码】&goto=【附带跳转地址，以sp参数返回】');
 			},
 			watchApp(schoolId) {
-				window.onpageshow = (event) => {
-					if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-						ZWJSBridge.close();
-					}
-					this.isLoad(schoolId);
-				}
+				// window.onpageshow = (event) => {
+				// 	if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+				// 		ZWJSBridge.close();
+				// 	}
+				// 	this.isLoad(schoolId);
+				// }
 			},
 			// 支付宝浙里办小程序判断页面进入状态
 			watchApply(schoolId) {
-				window.onpageshow = (event) => {
-					if (event.persisted || (window.performance && (window.performance.navigation.type == 1 || window
-							.performance.navigation.type == 0))) {
-						this.isLoad(schoolId);
-					} else {
-						my.navigateBack();
-					}
-				}
+				// window.onpageshow = (event) => {
+				// 	if (event.persisted || (window.performance && (window.performance.navigation.type == 1 || window
+				// 			.performance.navigation.type == 0))) {
+				// 		this.isLoad(schoolId);
+				// 	} else {
+				// 		my.navigateBack();
+				// 	}
+				// }
 			},
 			phone() {
-				ZWJSBridge.phoneCall({
-					"corpId": this.phoneNum
-				}).then(res => {
-					console.log(res)
-				}).catch(err => {
-					console.log(err)
-				})
+				// ZWJSBridge.phoneCall({
+				// 	"corpId": this.phoneNum
+				// }).then(res => {
+				// 	console.log(res)
+				// }).catch(err => {
+				// 	console.log(err)
+				// })
 			},
 
 			toyuyue(id) {
@@ -313,8 +335,20 @@
 						url: '../volunteer/volunteer'
 					})
 				} else if (index == 4) {
-					uni.switchTab({
-						url: '../zhoubian/index'
+					uni.navigateTo({
+						url: '../site/index'
+					})
+				} else if (index == 5) {
+					uni.navigateTo({
+						url: '../student/index'
+					})
+				} else if (index == 6) {
+					uni.navigateTo({
+						url: '../teacher/index'
+					})
+				} else if (index == 7) {
+					uni.navigateTo({
+						url: '../courseware/index'
 					})
 				}
 			},
@@ -374,8 +408,8 @@
 	page {
 		background-color: white;
 	}
-	
-	.elder .card2 image{
+
+	.elder .card2 image {
 		height: 270rpx;
 	}
 
@@ -388,6 +422,9 @@
 		color: #808DA1;
 		background-color: #ffffff;
 		text-align: center;
+		bottom: 10rpx;
+		right: 70rpx;
+		position: absolute;
 	}
 
 	.elder .footer {

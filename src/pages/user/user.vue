@@ -3,11 +3,11 @@
 		<view class="top-bg"></view>
 		<view class="main">
 			<view class="item">
-				<view class="icon icon-yundongbisai"></view>
-				<view class="title u-font-36">{{data.realname}}
+				<view class="icon icon-jiaoyu"></view>
+		<!-- 		<view class="title u-font-36">{{data.realname}}
 					<span class="tag icon-medal-fill u-p-tb-10">运动达人</span>
-				</view>
-				<view class="content" :class="uiStyle=='normal'?'u-m-t-40':'u-m-t-20'">生命在于运动，健康在于锻炼</view>
+				</view> -->
+				<view class="icon-aixin" :class="uiStyle=='normal'?'u-m-t-40':'u-m-t-20'">关怀青少年健康成长</view>
 				<view class="show space-between">
 					<view class="index">
 						<view>{{data.volunteercount|getBouble()}}</view>
@@ -15,16 +15,16 @@
 					</view>
 					<view class="index">
 						<view>{{data.preachcount|getBouble()}}</view>
-						<view>活动次数</view>
+						<view>课程次数</view>
 					</view>
 					<view class="index">
 						<view>{{data.collectcount|getBouble()}}</view>
-						<view>收藏课程</view>
+						<view>场地提供次数</view>
 					</view>
 				</view>
 			</view>
 
-			<view class="flex u-m-tb-22">
+<!-- 			<view class="flex u-m-tb-22">
 				<view class="item u-p-0 u-p-lr-40 u-m-r-20 u-b-r-8 item2" @click="toyuyue">
 					<view class="title-area">
 						<view class="title">我的预约</view>
@@ -40,7 +40,6 @@
 				<view class="item u-p-0 u-p-lr-40 u-b-r-8 item2">
 					<view class="title-area">
 						<view class="title">我的积分</view>
-						<!-- <view class="action icon-arrow-right-s-line"></view> -->
 					</view>
 					<view class="content">总积分</view>
 					<view class="font-bold u-font-48 u-m-t-5 u-m-b-10">
@@ -49,16 +48,20 @@
 					</view>
 					<view class="content">本周新增{{data.thisweekscore|getBouble()}}分</view>
 				</view>
-			</view>
+			</view> -->
 
-			<view class="item u-p-lr-0" style="height: auto;">
+			<view class="item u-p-lr-0 u-m-tb-22" style="height: auto;">
+				<view class="title-area">
+					<view class="title">我的课程</view>
+					<view class="action icon-arrow-right-s-line"></view>
+				</view>
 				<view class="show u-m-0">
 					<view class="index2" @click="nav(1)">
 						<view class="icon-hearts-line"></view>
 						<view>我的活动</view>
 					</view>
 					 <view class="index2" @click="nav(2)">
-						<view class="icon-suoyoubaoxiu"></view>
+						<view class="icon-wodebaoxiu2"></view>
 						<view>我的报修</view>
 					</view>
 					
@@ -194,6 +197,10 @@
 
 		top: -50upx;
 		right: 80upx;
+	}
+	
+	.icon-aixin{
+		color:#ff6a2a;
 	}
 
 	.main {

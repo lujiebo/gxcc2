@@ -13,16 +13,16 @@
 			console.log('App Launch')
 			// uni.setStorageSync('user-token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvcGxheWdyb3VuZC5teWNlai5jb20iLCJhdWQiOiJodHRwczpcL1wvcGxheWdyb3VuZC5teWNlai5jb20iLCJsYXQiOjE2NTgzNzM2OTEsIm5iZiI6MTY1ODM3MzY5MSwiZXhwIjoxNjg5OTA5NjkxLCJkYXRhIjp7ImFjY291bnRfaWQiOjF9fQ.WsXqB-tYv3idwdOgJNWRioi7qR78STHPqYUD55aoTAA')
 
-			ZWJSBridge.onReady(() => {
-				console.log('接口初始化完成')
-				ZWJSBridge.getUiStyle().then((res) => {
-					getApp().globalData.uiStyle = res.uiStyle
-					if(res.uiStyle == 'elder') {
-						// document.getElementById('app').className = 'elder';
-						document.getElementsByTagName('html')[0].className = document.getElementsByTagName('html')[0].className + ' elder';
-					}
-				}).catch((error) => {});
-			})
+			// ZWJSBridge.onReady(() => {
+			// 	console.log('接口初始化完成')
+			// 	ZWJSBridge.getUiStyle().then((res) => {
+			// 		getApp().globalData.uiStyle = res.uiStyle
+			// 		if(res.uiStyle == 'elder') {
+			// 			// document.getElementById('app').className = 'elder';
+			// 			document.getElementsByTagName('html')[0].className = document.getElementsByTagName('html')[0].className + ' elder';
+			// 		}
+			// 	}).catch((error) => {});
+			// })
 		},
 		onShow: function() {
 			console.log('App Show')
