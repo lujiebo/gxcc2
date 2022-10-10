@@ -5,43 +5,43 @@
 				<u-form-item label="场地名称" required prop="name">
 					<u-input v-model="form.name" placeholder="请输入场地名称" />
 				</u-form-item>
-				<u-form-item label="所在镇街道" prop="town">
+				<u-form-item label="所在镇街道" required prop="town">
 					<u-picker mode="selector" v-model="show" @confirm="TownChange" :range="townList" range-key="text"
 						:safe-area-inset-bottom="true"></u-picker>
 					<u-input v-model="form.town_name" placeholder="请选择镇街道" type="select" @click="show = true" />
 				</u-form-item>
-				<u-form-item label="详细地址" prop="address">
+				<u-form-item label="详细地址" required prop="address">
 					<u-input v-model="form.address" placeholder="请输入详细地址" type="select" @tap="chooseLocation" />
 				</u-form-item>
-				<u-form-item label="地址经度" prop="ing">
-					<u-input v-model="form.lngview" placeholder="请输入地址经度" />
+				<u-form-item label="地址经度" required prop="ing">
+					<u-input v-model="form.lngview" placeholder="请输入地址经度" disabled />
 				</u-form-item>
-				<u-form-item label="地址纬度" prop="lat">
-					<u-input v-model="form.latview" placeholder="请输入地址纬度" />
+				<u-form-item label="地址纬度" required prop="lat">
+					<u-input v-model="form.latview" placeholder="请输入地址纬度" disabled />
 				</u-form-item>
-				<u-form-item label="场地所有者" prop="owner">
+				<u-form-item label="场地所有者" required prop="owner">
 					<u-input v-model="form.owner" placeholder="请输入场地所有者" />
 				</u-form-item>
-				<u-form-item label="联系电话" prop="phone">
+				<u-form-item label="联系电话" required prop="phone">
 					<u-input v-model="form.phone" placeholder="请输入联系电话" />
 				</u-form-item>
-				<u-form-item label="可容纳人数" prop="capacity">
+				<u-form-item label="可容纳人数" required prop="capacity">
 					<u-input v-model="form.capacity" placeholder="请输入可容纳人数" type="number" />
 				</u-form-item>
-				<u-form-item label="管理员姓名" prop="adminname">
+				<u-form-item label="管理员姓名" required prop="adminname">
 					<u-input v-model="form.admin_name" placeholder="请输入管理员姓名" />
 				</u-form-item>
-				<u-form-item label="管理员手机" prop="adminmobile">
+				<u-form-item label="管理员手机" required prop="adminmobile">
 					<u-input v-model="form.admin_mobile" placeholder="请输入管理员手机" type="number" />
 				</u-form-item>
-				<u-form-item label="管理员住址" prop="adminaddress">
+				<u-form-item label="管理员住址" required prop="adminaddress">
 					<u-input v-model="form.admin_address" placeholder="请输入管理员住址" />
 				</u-form-item>
-				<u-form-item label="管理员身份证" prop="adminidno">
+				<u-form-item label="管理员身份证" required prop="adminidno">
 					<u-input v-model="form.admin_idno" placeholder="请输入管理员身份证" type="idcard" />
 				</u-form-item>
-				<u-form-item label="人数规模" prop="servicenumber">
-					<u-input v-model="form.service_number" placeholder="请输入人数规模" type="number" />
+				<u-form-item label="服务人数" required prop="servicenumber">
+					<u-input v-model="form.service_number" placeholder="请输入服务人数" type="number" />
 				</u-form-item>
 				<view class="panel">
 					<view class="card">
@@ -68,7 +68,7 @@
 								<uni-easyinput v-model="item.name" trim="both"></uni-easyinput>
 							</uni-forms-item>
 							<uni-forms-item label="设备数量">
-								<uni-number-box v-model="item.num" background="#63afff" color="#fff" />
+								<uni-number-box v-model="item.qty" background="#63afff" color="#fff" />
 							</uni-forms-item>
 							<view>
 								<view>
@@ -80,19 +80,12 @@
 						</uni-card>
 					</view>
 				</uni-forms-item>
-				<!-- 				<u-form-item label="场地介绍" required prop="introduce">
-					<view style="width: 100%;">
-						<u-input v-model="form.introduce" type="textarea" maxlength="160" placeholder="请输入场地介绍" />
-						<view style="color: #00000070;width: 100%;text-align: end;line-height: 1;">
-							{{form.introduce.length}}/160字
-						</view>
-					</view>
-				</u-form-item> -->
 			</uniSection>
 		</u-form>
 		<view class="buttom">
-			<button @click="sub">立即登记</button>
+			<button @click="sub" :disabled="isAble">{{saveBtn}}</button>
 		</view>
+		<u-toast :type="type" ref="uToast"></u-toast>
 	</view>
 </template>
 
@@ -118,6 +111,9 @@
 				townList: [],
 				location: {},
 				hasLocation: false,
+				isFirst: true,
+				saveBtn: '立即登记',
+				isAble: false,
 				form: {
 					name: '',
 					town_id: '',
@@ -136,7 +132,7 @@
 					siteTimeSection: [],
 					siteEquipment: [{
 						name: "",
-						num: "1"
+						qty: "1"
 					}]
 				},
 				rules: {
@@ -165,10 +161,17 @@
 			}
 		},
 		onLoad(option) {
-			var token = uni.getStorageSync('user-token')
-			this.header = {
-				token: token
+			var user = uni.getStorageSync('user')
+			this.userId = user.person_id
+			//说明是首次登记
+			if (!option.id) {
+				this.saveBtn = '保存'
+				this.isFirst = false
+
+			} else {
+				this.id = option.id
 			}
+
 			this.getCategory()
 			this.getDate()
 		},
@@ -234,6 +237,37 @@
 							checked: false
 						})
 					}
+
+					if (!this.isFirst)
+						this.getInfo()
+				})
+			},
+			getInfo() {
+				this.http.get(
+					'/api/site', {
+						id: this.userId
+					},
+					2
+				).then(data => {
+					console.log(data)
+					this.form = data
+					var that = this
+					for (var i in data.siteTimeSection) {
+						let time = that.date.find(v => {
+							if (v.id != data.siteTimeSection[i].time_section_id) {
+								return
+							}
+							v.checked = true
+						})
+					}
+
+					var longitude = data.lng.toString().split(".");
+					var latitude = data.lat.toString().split(".");
+
+					this.form.lngview = "E: " + longitude[0] + "°" +
+						longitude[1] + "′";
+					this.form.latview = "N: " + latitude[0] + "°" +
+						latitude[1] + "′";
 				})
 			},
 			remove(index, lists) {
@@ -278,24 +312,62 @@
 				this.form.siteEquipment.splice(index, 1)[0]
 			},
 			sub() {
+				this.isAble = true
+				this.form.siteTimeSection = []
+
+				for (var i in this.date) {
+					if (!this.date[i].checked) {
+						continue
+					}
+					this.form.siteTimeSection.push({
+						time_section_id: this.date[i].id
+					})
+				}
+
 				var josnform = JSON.stringify(this.form);
 				console.log(josnform)
 
+				var that = this
+
 				this.http.post1('/api/site', josnform, 2).then((data) => {
 					if (data.status == 1) {
-						uni.redirectTo({
-							url: './success?id=' + data.id + '&&type=0' //0成功1失败
-						})
+						//首次登录成功 跳转到成功页面 然后到首页获取token
+						if (that.isFirst) {
+							uni.redirectTo({
+								url: './success?id=' + data.data.id + '&&type=0&&phone=' + that.id //0成功1失败
+							})
+						} else {
+							//修改登记信息 回到个人中心页面 无需获取token
+							that.$refs.uToast.show({
+								title: '保存成功',
+								position: 'center',
+								type: 'success',
+								icon: 'true',
+								callback() {
+									uni.switchTab({
+										url: '../user/user'
+									})
+								}
+							});
+						}
 					} else {
-						uni.redirectTo({
-							url: './success?id=' + data.id + '&&msg=' + data.msg + '&&type=1' //0成功1失败
-						})
+						that.$refs.uToast.show({
+							title: data.msg,
+							position: 'center',
+							type: 'error',
+							icon: 'true'
+						});
+						this.isAble = false
 					}
 
 				}).catch(() => {
-					// uni.redirectTo({
-					// 	url: './success?id=' + this.id + '&&type=1' //0成功1失败
-					// })
+					that.$refs.uToast.show({
+						title: '内部错误',
+						position: 'center',
+						type: 'error',
+						icon: 'true'
+					});
+					this.isAble = false
 				})
 			}
 		}

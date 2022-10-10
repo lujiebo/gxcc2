@@ -7,7 +7,7 @@
 		</view>
 
 		<view class="swiper_area">
-			<image src="../../static/swiper_bg.png"></image>
+			<image src="../../static/swiper_bg.png" courseware_img_path></image>
 			<swiper class="swiper" :indicator-dots="true" :autoplay="true" :interval="2000" :duration="500"
 				indicator-color="#ffffff">
 				<swiper-item v-for="(item,index) in topImg">
@@ -16,81 +16,55 @@
 			</swiper>
 
 			<view class="flex space-around u-m-t-30">
-				<!-- 				<view class="navItem" @click="tabNav(1)">
-					<view class="icon-map u-font-32" style="color: #3A89EB;"></view>
-					<view>悦运动</view>
+				<view class="navItem">
+					<view class="icon-jiaoshigongzuotai u-font-40" style="color: #F99D18;"></view>
+					<view>教师{{teacherCount}}人</view>
 				</view>
-				<view class="navItem" @click="tabNav(2)">
-					<view class="icon-mic-fill u-font-46" style="color: #F99D18;"></view>
-					<view>悦宣讲</view>
+				<view class="navItem">
+					<view class="icon-xueshengtongji u-font-40" style="color: #3A89EB;"></view>
+					<view>学生{{studentCount}}人</view>
 				</view>
-				<view class="navItem" @click="tabNav(3)">
-					<view class="icon-hearts-fill u-font-46" style="color: #FF6A2A;"></view>
-					<view>悦生活</view>
-				</view> -->
-				<view class="navItem" @click="tabNav(4)">
-					<view class="icon-xuqiudengji u-font-40" style="color: #00B872;"></view>
-					<view>场地登记</view>
+				<view class="navItem">
+					<view class="icon-changdi1 u-font-40" style="color: #00B872;"></view>
+					<view>场地{{siteCount}}个</view>
 				</view>
-				<view class="navItem" @click="tabNav(5)">
-					<view class="icon-xuqiudengji u-font-40" style="color: #3A89EB;"></view>
-					<view>学生登记</view>
+				<view class="navItem">
+					<view class="icon-kejianshangchuan u-font-46" style="color: #F99D18;"></view>
+					<view>开课{{courseCount}}门</view>
 				</view>
-				<view class="navItem" @click="tabNav(6)">
-					<view class="icon-xuqiudengji u-font-40" style="color: #F99D18;"></view>
-					<view>教师登记</view>
-				</view>
-				<view class="navItem" @click="tabNav(7)">
+				<!-- 				<view class="navItem" @click="tabNav(7)">
 					<view class="icon-kejianshangchuan u-font-40" style="color: #FF6A2A;"></view>
 					<view>课件上传</view>
-				</view>
+				</view> -->
 			</view>
 		</view>
 
-		<!-- <view class="item">
-			<view class="title-area">
-				<view class="title">热门场地<span class="icon-fire u-m-l-10"
-						style="color: #FF6A2A;font-weight: normal;"></span></view>
-			</view>
-			<scroll-view :scroll-x="true" class="scroll">
-				<view class="card card1" v-for="(item,index) in appointschools">
-					<view class="title text-ellipsis-1">{{item.schoolname}}</view>
-					<image v-if="index == 0" src="../../static/first.png"
-						style="width: 35upx;height: 50upx;position: absolute;top: 20upx;right: 40upx;" mode="aspectFill"
-						lazy-load></image>
-					<view class="content">
-						<view>
-							<view>{{item.total}}人已预约</view>
-							<button @click="toyuyue(item.schoolid)">立即预约</button>
-						</view>
-						<image :src="item.cover[0].url" mode="aspectFill"></image>
-					</view>
-				</view>
-			</scroll-view>
-
-		</view>
 
 		<view class="item">
 			<view class="title-area">
-				<view class="title">最新活动</view>
+				<view class="title">最新课程</view>
 				<view class="action" @click="navMore(1)">更多></view>
 			</view>
 			<view>
-				<view class="card card2" v-for="(item,index) in activity" @click="toActivity(item.id)">
-					<image :src="item.cover[0].url" mode="aspectFill" lazy-load></image>
-					<view class="content" style="padding: 10rpx 0;">
-						<view class="title text-ellipsis-2">{{item.activityname}}</view>
+				<view class="card card2" v-for="(item,index) in courseList" @click="toCourseDetail(item.id)">
+					<image :src="item.courseware_img_path" mode="aspectFill" lazy-load></image>
+					<view class="content" style="padding: 5rpx 0;">
+						<view class="title text-ellipsis-2">{{item.courseware_name}}</view>
 						<view>
 							<view class="text-ellipsis-1" v-if="item.activitytype != 1">
-								报名时间：{{item.enrollstarttime}}</view>
-							<view :class="uiStyle=='normal'?'u-flex u-m-t-15':''" v-if="item.activitytype != 1">
+								上课日期：{{item.date}}</view>
+							<!-- 						<view :class="uiStyle=='normal'?'u-flex u-m-t-15':''" v-if="item.activitytype != 1">
 								<view class="icon-database-2-line" style="margin-right: 30upx;">+{{item.score}}分</view>
 								<view class="icon-map-pin-user-line">{{item.enrollcount}}人已参加</view>
+							</view> -->
+							<view>
+								<view class="text-ellipsis-1">上课时间：{{item.time_section_name}}</view>
+								<view class="text-ellipsis-1">
+									上课地点：{{item.site_name}}</view>
 							</view>
-							<view v-if="item.activitytype == 1">
-								<view class="text-ellipsis-1">活动时间：{{item.starttime}}</view>
-								<view class="text-ellipsis-1" style="margin-top: 15upx;">
-									活动地点：{{item.schoolname}}</view>
+							<view :class="uiStyle=='normal'?'':''">
+								<view class="icon-map-pin-user-line">{{item.student_count}}/{{item.site_capacity}}人已报名
+								</view>
 							</view>
 						</view>
 
@@ -100,54 +74,6 @@
 
 		</view>
 
-
-		<view class="item">
-			<view class="title-area">
-				<view class="title">为您推荐</view>
-				<view class="action" @click="navMore(2)">更多></view>
-			</view>
-			<view style="display: flex;flex-wrap: wrap;justify-content: space-between;">
-				<view class="card card3" v-for="(item,index) in video" @click="toDetail(item.id)">
-					<image :src="item.thumb" mode="aspectFill" lazy-load>
-					</image>
-					<view class="icon-play-circle-line"></view>
-					<view class="content">
-						<view class="title text-ellipsis-1" v-if="item.belongtype == 0">宣讲活动</view>
-						<view class="title text-ellipsis-1" v-if="item.belongtype == 1">运动科普</view>
-						<view class="title text-ellipsis-1">{{item.videoname}}</view>
-						<view class="gap"></view>
-						<view style="margin-top: 15upx;display: flex;justify-content: space-between;">
-							<view class="icon-time-line">{{item.duration}}</view>
-							<view class="icon-eye-line u-flex">
-								<view class="u-m-l-10">{{item.viewtimes}}</view>
-							</view>
-						</view>
-
-					</view>
-				</view>
-			</view>
-
-		</view> -->
-
-		<!-- <view class="item">
-			<view class="title-area">
-				<view class="title">人气兑换</view>
-				<view class="action">更多></view>
-			</view>
-			<view style="display: flex;flex-wrap: wrap;">
-				<view class="card card4" v-for="(item,index) in 5">
-					<image
-						src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp09%2F210611094Q512b-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1651800802&t=ea86bac33ae4d7e5c01aa1e191713280">
-					</image>
-					<view class="content">
-						<view class="title text-ellipsis-2">一款精美手账日记笔记本</view>
-						<view style="margin-top: 16upx;">300积分</view>
-
-					</view>
-				</view>
-			</view>
-
-		</view> -->
 
 		<view class="footer">
 			<view>本服务由浙江政务服务网、中共慈溪市委宣传部提供。</view>
@@ -175,231 +101,108 @@
 				appointschools: [],
 				uiStyle: getApp().globalData.uiStyle,
 				phoneNum: '0574-XXXXXXXX',
-				show: false,
-				picList: []
+				show: true,
+				showIndex: false,
+				picList: [],
+				courseList: [],
+				teacherCount: '',
+				studentCount: '',
+				siteCount: '',
+				courseCount: ''
 			}
 		},
-		onLoad() {
-			// this.getActivity()
-			// this.getVideo()
-			console.log(11)
-
-			// uni.reLaunch({
-			// 	url: '../admin/index?title=test'
-			// })
-
-			// uni.navigateTo({
-			// 	url:'../yuyue/ruchang?id=1'
-			// })
-
-
-			// const sUserAgent = window.navigator.userAgent.toLowerCase()
-			// const bIsDtDreamApp = sUserAgent.indexOf('dtdreamweb') > -1 // 浙里办APP
-			// const bIsAlipayMini = sUserAgent.indexOf('miniprogram') > -1 && sUserAgent.indexOf('alipay') > -1 //支付宝
-
-			// var search = window.location.search
-			// var str = search.substring(1, search.length);
-			// var arr = str.split("&");
-			// var obj = new Object();
-			// // 将每一个数组元素以=分隔并赋给obj对象
-			// for (var i = 0; i < arr.length; i++) {
-			// 	var tmp_arr = arr[i].split("=");
-			// 	obj[decodeURIComponent(tmp_arr[0])] = decodeURIComponent(tmp_arr[1]);
+		onLoad(option) {
+			// if (option.phone == -1) {
+			// 	uni.setStorageSync('user-token', '')
+			// 	uni.setStorageSync('user', '')
+			// 	return;
 			// }
 
-			// var schoolId = ''
+			var token = uni.getStorageSync('user-token')
+			if (token == "") {
+				//id 为登录手机号
+				if (option.id) {
+					console.log(option.id)
+					this.http.post1('/api/zlb/token', {
+						"unid": option.id
+					}, 2).then((data) => {
+						if (data.status == 1) {
+							uni.setStorageSync('user-token', data.data.token)
+							uni.setStorageSync('user', data.data.user)
+							this.getCount()
+							this.show = false
 
-			// if (obj['schoolId']) {
-			// 	schoolId = obj['schoolId']
-			// }
-			// if (obj['ticket'] && getApp().globalData.ticket == null) {
+						} else {
+							uni.navigateTo({
+								url: './register?id=' + option.id
+							})
+						}
+					}).catch(() => {})
+				} else {
+					// var token = uni.getStorageSync('user-token')
+					// if (token != "") {
+					// 	this.getCount()
+					// 	this.show = false
+					// } else {
+					uni.navigateTo({
+						url: './register?id=' + option.id
+					})
+					// }
+				}
+			} else {
+				this.show = false
+				this.getCount()
+			}
 
-
-			// 	aplus_queue.push({
-			// 		'action': 'aplus.sendPV',
-			// 		'arguments': [{
-			// 			is_auto: false
-			// 		}, { // 自定义 PV 参数 key-value 键值对（只能是这种平铺的 json，不能做多层 嵌套），如： 
-			// 			isMini: true,
-			// 			miniAppId: '2002201920',
-			// 			miniAppName: '共享操场'
-			// 		}]
-			// 	})
-			// 	this.show = false
-			// 	getApp().globalData.ticket = obj['ticket']; //放入全局变量
-			// 	this.http.post('login/notify', {
-			// 		ticket: obj['ticket']
-			// 	}, 1).then((data) => {
-			// 		if (data.token) {
-			// 			uni.setStorageSync('user-token', data.token)
-			// 			if(data.role == 1) {
-			// 				uni.reLaunch({
-			// 					url:'../admin/index?title=' + data.schoolname
-			// 				})
-			// 			} else {
-			// 				if(obj['sp']) {
-			// 					uni.navigateTo({
-			// 						url:'../yuyue/ruchang?id='+obj['sp']
-			// 					})
-			// 				}
-			// 			}
-			// this.getData()
-
-			// 		}
-			// 	})
-			// } else if (bIsDtDreamApp) {
-			// 	this.watchApp(schoolId);
-			// } else if (bIsAlipayMini) {
-			// 	this.watchApply(schoolId);
-			// }
-
-
+			this.getCourseList()
 		},
 		methods: {
-			isLoad(schoolId) {
+			toCourseDetail(id) {
 				uni.navigateTo({
-					url: '../admin/index'
+					url: 'courseDetail?id=' + id
 				})
-
-				this.show = false
-				this.getData()
-				if (schoolId) {
-					uni.navigateTo({
-						url: '../yuyue/ruchang?id=' + schoolId
-					})
-				}
-
-
-				//单点
-				// if (bIsAlipayMini) {
-				// 	window.location.href =
-				// 		"https://puser.zjzwfw.gov.cn/sso/alipay.do?action=ssoLogin&servicecode=BCDSGA_75dc68cd4b42823600c378cac7fe33b8&goto="+schoolId
-				// } else {
-				// 	window.location.href =
-				// 		"https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=BCDSGA_75dc68cd4b42823600c378cac7fe33b8&goto="+schoolId
-				// }
-
-				// 或者使用replace()
-				// window.location.replace('https://puser.zjzwfw.gov.cn/sso/alipay.do?action=ssoLogin&servicecode=【接入代码】&goto=【附带跳转地址，以sp参数返回】');
-			},
-			watchApp(schoolId) {
-				// window.onpageshow = (event) => {
-				// 	if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-				// 		ZWJSBridge.close();
-				// 	}
-				// 	this.isLoad(schoolId);
-				// }
-			},
-			// 支付宝浙里办小程序判断页面进入状态
-			watchApply(schoolId) {
-				// window.onpageshow = (event) => {
-				// 	if (event.persisted || (window.performance && (window.performance.navigation.type == 1 || window
-				// 			.performance.navigation.type == 0))) {
-				// 		this.isLoad(schoolId);
-				// 	} else {
-				// 		my.navigateBack();
-				// 	}
-				// }
-			},
-			phone() {
-				// ZWJSBridge.phoneCall({
-				// 	"corpId": this.phoneNum
-				// }).then(res => {
-				// 	console.log(res)
-				// }).catch(err => {
-				// 	console.log(err)
-				// })
-			},
-
-			toyuyue(id) {
-				uni.navigateTo({
-					url: '../yuyue/yuyueDetail?id=' + id
-				})
-			},
-			toActivity(id) {
-				uni.navigateTo({
-					url: '../volunteer/volunteerDetail?id=' + id
-				})
-			},
-			tabNav(index) {
-				if (index == 1) {
-					uni.navigateTo({
-						url: '../activity/activity'
-					})
-				} else if (index == 2) {
-					uni.navigateTo({
-						url: '../activity/yuexuanjiang'
-					})
-				} else if (index == 3) {
-					uni.navigateTo({
-						url: '../volunteer/volunteer'
-					})
-				} else if (index == 4) {
-					uni.navigateTo({
-						url: '../site/index'
-					})
-				} else if (index == 5) {
-					uni.navigateTo({
-						url: '../student/index'
-					})
-				} else if (index == 6) {
-					uni.navigateTo({
-						url: '../teacher/index'
-					})
-				} else if (index == 7) {
-					uni.navigateTo({
-						url: '../courseware/index'
-					})
-				}
 			},
 			navMore(index) {
 				if (index == 1) {
 					uni.navigateTo({
-						url: '../activity/allActivity'
-					})
-				} else if (index == 2) {
-					uni.navigateTo({
-						url: '../activity/allVideo'
+						url: '../index/allCourseList'
 					})
 				}
 			},
-			getData() {
-				this.http.post('home/index', {}, 2).then((data) => {
+			getCourseList() {
+				this.http.get(
+					'/api/course', {
+						type: 0,
+						ppc: 3
+					},
+					2
+				).then(data => {
+					data.rows.forEach((v, index) => {
+						// console.log(getApp().globalData.domain)
+						v.courseware_img_path = getApp().globalData.domain + v.courseware_img_path
+					})
+					// console.log(data.rows)
 
-					this.appointschools = data.appointschools
-					this.activity = data.activitys
-					this.video = data.videos
+					this.courseList = data.rows
 				})
 			},
-			getActivity() {
-				this.http.post('activity/activityListTotal', {
-					type: 0, //0:热门活动 1：组队活动 2：宣讲活动 3：运动科普
-					pageNo: 1,
-					pageSize: 2,
-					order: 0 ///0:常规 1：随机  热门活动传1 随机推荐
-				}, 2).then((data) => {
-					this.activity = data.activitys
+			getCount() {
+				this.http.get(
+					'/api/m', {
+						type: 0
+					},
+					2
+				).then(data => {
+					this.teacherCount = data.teacher
+					this.studentCount = data.student
+					this.siteCount = data.site
+					this.courseCount = data.course
 				})
 			},
-			getVideo() {
-				this.http.post('activity/videoList', {
-					type: 0, //0:热门活动 1：组队活动 2：宣讲活动 3：运动科普
-					pageNo: 1,
-					pageSize: 4,
-					order: 1 ///0:常规 1：随机  热门活动传1 随机推荐
-				}, 2).then((data) => {
-					this.video = data.videos
-				})
-			},
-			toDetail(id) {
-				uni.navigateTo({
-					url: '../activity/videoDetail?id=' + id
-				})
-			},
-			async onPullDownRefresh() {
-				await this.getData()
-				uni.stopPullDownRefresh()
-			},
+			// async onPullDownRefresh() {
+			// 	await this.getData()
+			// 	uni.stopPullDownRefresh()
+			// },
 		}
 	}
 </script>
@@ -422,9 +225,6 @@
 		color: #808DA1;
 		background-color: #ffffff;
 		text-align: center;
-		bottom: 10rpx;
-		right: 70rpx;
-		position: absolute;
 	}
 
 	.elder .footer {

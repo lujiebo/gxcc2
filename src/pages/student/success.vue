@@ -5,7 +5,7 @@
 				<uni-icons type="checkbox-filled" size="104" color="green"></uni-icons>
 			</view>
 			<view class="title">登记成功！</view>
-			<view><span style="color: #FEA72B;">{{time}}</span>秒后自动跳转到活动页面</view>
+			<view><span style="color: #FEA72B;">{{time}}</span>秒后自动跳转到首页</view>
 			<button class="btn-l" style="width: 90%;" @click="click()">立即前往</button>
 		</view>
 		<view class="content" v-if="type == 1">
@@ -28,15 +28,18 @@
 				id: '',
 				time: 3,
 				type: 0, //0成功，1失败
-				tt:null
+				tt: null
 			}
 		},
 		onLoad(option) {
-			if(option.id) {
+			if (option.id) {
 				this.id = option.id
 			}
-			if(option.type) {
+			if (option.type) {
 				this.type = option.type
+			}
+			if (option.phone) {
+				this.phone = option.phone
 			}
 			if (this.type == 0) {
 				this.tt = setInterval(() => {
@@ -49,21 +52,20 @@
 					}
 
 				}, 1000)
-			}
-			else{
+			} else {
 				this.msg = option.msg
 			}
 
 		},
 		methods: {
 			click() {
-				uni.redirectTo({
-					url: '../user/activityDetail?id=' + this.id
+				uni.reLaunch({
+					url: '/?id=' + this.phone
 				})
 			},
 			clickRe() {
 				uni.navigateBack({
-					delta:1
+					delta: 1
 				})
 			}
 		},

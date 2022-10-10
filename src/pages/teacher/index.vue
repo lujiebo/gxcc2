@@ -8,45 +8,45 @@
 				<u-form-item label="教师年龄" required prop="name">
 					<u-input v-model="form.age" placeholder="请输入教师年龄" />
 				</u-form-item>
-				<u-form-item label="联系手机" prop="mobile">
+				<u-form-item label="联系手机" required prop="mobile">
 					<u-input v-model="form.mobile" placeholder="请输入联系手机" />
 				</u-form-item>
-				<u-form-item label="人员性质" prop="nature">
+				<u-form-item label="人员性质" required prop="nature">
 					<u-picker mode="selector" v-model="showNature" @confirm="NatureChange" :range="natureList"
 						range-key="text" :safe-area-inset-bottom="true"></u-picker>
 					<u-input v-model="form.nature_name" placeholder="请选择人员性质" type="select"
 						@click="showNature = true" />
 				</u-form-item>
-				<u-form-item label="课程语言" prop="course">
+				<u-form-item label="课程语言" required prop="course">
 					<u-picker mode="selector" v-model="showCourse" @confirm="CourseChange" :range="courseList"
 						range-key="text" :safe-area-inset-bottom="true"></u-picker>
 					<u-input v-model="form.course_language_name" placeholder="请选择课程语言" type="select"
 						@click="showCourse = true" />
 				</u-form-item>
-				<u-form-item label="文化程度" prop="course">
+				<u-form-item label="文化程度" required prop="course">
 					<u-picker mode="selector" v-model="showEducation" @confirm="EducationChange" :range="educationList"
 						range-key="text" :safe-area-inset-bottom="true"></u-picker>
 					<u-input v-model="form.education_name" placeholder="请选择文化程度" type="select"
 						@click="showEducation = true" />
 				</u-form-item>
-				<u-form-item label="所在镇街道" prop="town">
+				<u-form-item label="所在镇街道" required prop="town">
 					<u-picker mode="selector" v-model="show" @confirm="TownChange" :range="townList" range-key="text"
 						:safe-area-inset-bottom="true"></u-picker>
 					<u-input v-model="form.town_name" placeholder="请选择镇街道" type="select" @click="show = true" />
 				</u-form-item>
-				<u-form-item label="详细地址" prop="address">
+				<u-form-item label="详细地址" required prop="address">
 					<u-input v-model="form.address" placeholder="请输入详细地址" type="select" @tap="chooseLocation" />
 				</u-form-item>
-				<u-form-item label="地址经度" prop="ing">
-					<u-input v-model="form.lngview" placeholder="请输入地址经度" />
+				<u-form-item label="地址经度" required prop="ing">
+					<u-input v-model="form.lngview" placeholder="请输入地址经度" disabled />
 				</u-form-item>
-				<u-form-item label="地址纬度" prop="lat">
-					<u-input v-model="form.latview" placeholder="请输入地址纬度" />
+				<u-form-item label="地址纬度" required prop="lat">
+					<u-input v-model="form.latview" placeholder="请输入地址纬度" disabled />
 				</u-form-item>
-				<u-form-item label="服务时长" prop="time">
+				<!-- 				<u-form-item label="服务时长" prop="time">
 					<u-input v-model="form.service_duration" placeholder="请输入服务时长" />
-				</u-form-item>
-				<u-form-item label="职业" prop="occupation">
+				</u-form-item> -->
+				<u-form-item label="职业" required prop="occupation">
 					<u-picker mode="selector" v-model="showOccupation" @confirm="OccupationChange"
 						:range="occupationList" range-key="text" :safe-area-inset-bottom="true"></u-picker>
 					<u-input v-model="form.occupation_name" placeholder="请选择职业" type="select"
@@ -69,8 +69,10 @@
 		</u-form>
 
 		<view class="buttom">
-			<button @click="sub">立即登记</button>
+			<button @click="sub" :disabled="isAble">{{saveBtn}}</button>
 		</view>
+
+		<u-toast :type="type" ref="uToast"></u-toast>
 	</view>
 </template>
 
@@ -104,6 +106,9 @@
 				showCourse: false,
 				showEducation: false,
 				showOccupation: false,
+				saveBtn: '立即登记',
+				isFirst: true,
+				isAble: false,
 				form: {
 					name: '',
 					age: '',
@@ -112,7 +117,7 @@
 					address: '',
 					lng: '', //经度
 					lat: '', //纬度
-					teacherTimeSection:[]
+					teacherTimeSection: []
 				},
 				rules: {
 					name: [
@@ -128,15 +133,27 @@
 		},
 		onLoad(option) {
 			var token = uni.getStorageSync('user-token')
-			this.header = {
-				token: token
+			var user = uni.getStorageSync('user')
+			this.userId = user.person_id
+			// this.header = {
+			// 	token: token
+			// }
+
+			if (!option.id) {
+				this.saveBtn = '保存'
+				this.isFirst = false
+
+			} else {
+				this.id = option.id
 			}
+
 			this.getCategory()
 			this.getDate()
 			this.getCourse()
 			this.getEducation()
 			this.getNature()
 			this.getOccuption()
+			// this.getInfo()
 		},
 		onReady() {
 			this.$refs.uForm.setRules(this.rules)
@@ -163,6 +180,34 @@
 					}
 				})
 			},
+			getInfo() {
+				this.http.get(
+					'/api/teacher', {
+						id: this.userId
+					},
+					2
+				).then(data => {
+					this.form = data
+					var that = this
+					for (var i in data.teacherTimeSection) {
+						let time = that.date.find(v => {
+							if (v.id != data.teacherTimeSection[i].time_section_id) {
+								return
+							}
+							v.checked = true
+						})
+					}
+
+					var longitude = data.lng.toString().split(".");
+					var latitude = data.lat.toString().split(".");
+
+					this.form.lngview = "E: " + longitude[0] + "°" +
+						longitude[1] + "′";
+					this.form.latview = "N: " + latitude[0] + "°" +
+						latitude[1] + "′";
+
+				})
+			},
 			getCategory() {
 				this.http.get(
 					'/api/sys/item/104', {
@@ -170,7 +215,7 @@
 					},
 					2
 				).then(data => {
-					console.log(data)
+					// console.log(data)
 					for (var i in data.rows) {
 						this.townList.push({
 							text: data.rows[i].name,
@@ -186,7 +231,7 @@
 					},
 					2
 				).then(data => {
-					console.log(data)
+					// console.log(data)
 					for (var i in data.rows) {
 						this.courseList.push({
 							text: data.rows[i].name,
@@ -218,7 +263,7 @@
 					},
 					2
 				).then(data => {
-					console.log(data)
+					// console.log(data)
 					for (var i in data.rows) {
 						this.occupationList.push({
 							text: data.rows[i].name,
@@ -234,7 +279,7 @@
 					},
 					2
 				).then(data => {
-					console.log(data)
+					// console.log(data)
 					for (var i in data.rows) {
 						this.educationList.push({
 							text: data.rows[i].name,
@@ -244,6 +289,7 @@
 				})
 			},
 			getDate() {
+				var that = this
 				this.http.get(
 					'/api/sys/item/108', {
 						type: 0,
@@ -251,7 +297,7 @@
 					},
 					2
 				).then(data => {
-					console.log(data)
+					// console.log(data)
 					for (var i in data.rows) {
 						if (!data.rows[i].status) {
 							continue
@@ -264,6 +310,9 @@
 							checked: false
 						})
 					}
+
+					if (!that.isFirst)
+						that.getInfo()
 				})
 			},
 			dateChange(id) {
@@ -274,9 +323,6 @@
 					}
 					v.checked = !v.checked
 					return v.id == id
-				})
-				this.form.teacherTimeSection.push({
-					time_section_id: time.id
 				})
 			},
 			TownChange(e) {
@@ -300,25 +346,64 @@
 				this.form.education_id = this.educationList[e].value
 			},
 			sub() {
+				this.isAble = true
+				this.form.teacherTimeSection = []
+
+				for (var i in this.date) {
+					if (!this.date[i].checked) {
+						continue
+					}
+					this.form.teacherTimeSection.push({
+						time_section_id: this.date[i].id
+					})
+				}
+
 				var josnform = JSON.stringify(this.form);
 				console.log(josnform)
+
+				// console.log(this.date)
 
 				this.http.post1('/api/teacher', josnform, 2).then((data) => {
 					if (data.status == 1) {
 						console.log(data.data.id)
-						uni.redirectTo({
-							url: './success?id=' + data.id + '&&type=0' //0成功1失败
-						})
+						//首次登录成功 跳转到成功页面 然后到首页获取token
+						if (this.isFirst) {
+							uni.redirectTo({
+								url: './success?id=' + data.data.id + '&&type=0&&phone=' + that.id //0成功1失败
+							})
+						} else {
+							//修改登记信息 回到个人中心页面 无需获取token
+							this.$refs.uToast.show({
+								title: '保存成功',
+								position: 'center',
+								type: 'success',
+								icon: 'true',
+								callback() {
+									uni.switchTab({
+										url: '../user/user'
+									})
+								}
+							});
+						}
 					} else {
-						uni.redirectTo({
-							url: './success?id=' + data.id + '&&msg=' + data.msg + '&&type=1' //0成功1失败
-						})
+
+						this.$refs.uToast.show({
+							title: data.msg,
+							position: 'center',
+							type: 'error',
+							icon: 'true'
+						});
+						this.isAble = false
 					}
 
 				}).catch(() => {
-					// uni.redirectTo({
-					// 	url: './success?id=' + this.id + '&&type=1' //0成功1失败
-					// })
+					that.$refs.uToast.show({
+						title: '内部错误',
+						position: 'center',
+						type: 'error',
+						icon: 'true'
+					});
+					this.isAble = false
 				})
 			}
 		}

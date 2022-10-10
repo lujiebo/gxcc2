@@ -13,7 +13,6 @@
 				<uni-icons type="clear" size="104" color="red"></uni-icons>
 			</view>
 			<view class="title">报名失败！</view>
-			<view>您在14天内去往或途径中高风险地区，不符合防疫要求</view>
 			<button class="btn-l" style="width: 90%;" @click="clickRe()">返回</button>
 		</view>
 
@@ -54,8 +53,8 @@
 		},
 		methods: {
 			click() {
-				uni.redirectTo({
-					url: '../volunteer/volunteerDetail?id='+id +'&&isEdit=true'
+				uni.navigateTo({
+					url: 'courseDetail?id='+id
 				})
 			},
 			clickRe() {

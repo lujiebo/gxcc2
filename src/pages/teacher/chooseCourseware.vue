@@ -5,31 +5,31 @@
 				:focus="true" @cancel="cancel" />
 		</view>
 		<view class="panel">
-			<view v-if="list.list && list.list.length>0">
-				<view class="card card2" v-for="(item,index) in list.list" @click="choosen(item)">
+			<view v-if="courseList && courseList.length>0">
+				<view class="card card2" v-for="(item,index) in courseList" @click="choosen(item)">
 					<image 
 					  style="width: 120upx;height: 104upx;" 
-					  :src="item.cover[0].url" 
+					  src="../../static/v2_index2.jpeg" 
 					  mode="aspectFill"
 					  lazy-load
 					>
 					</image>
 					<view class="content" style="justify-content: flex-start;">
-						<view class="title text-ellipsis-2" style="flex-shrink: 0;">{{item.schoolname}}</view>
+						<view class="title text-ellipsis-2" style="flex-shrink: 0;">{{item.text}}</view>
 						<view>
 							<view class="flex space-between u-m-t-8">
 								<view class="icon-map-pin-line text-ellipsis-2">
-									{{item.address}}
+									{{item.text}}
 								</view>
-								<view>{{item.distance}}</view>
+								<view>{{item.text}}</view>
 							</view>
 
 						</view>
 					</view>
 				</view>
 			</view>
-			<u-loadmore v-if="list.list && list.list.length>0" :status="status" margin-top="20" />
-			<u-empty text="暂无数据" mode="data" v-if="(list.list.length==0) || (!list.list)" margin-top="100"></u-empty>
+			<u-loadmore v-if="courseList && courseList.length>0" :status="status" margin-top="20" />
+			<u-empty text="暂无数据" mode="data" v-if="(courseList.length==0) || (!courseList)" margin-top="100"></u-empty>
 		</view>
 
 
@@ -47,6 +47,7 @@
 				// status: 'nomore',
 				search_params: {},
 				keyWord: '',
+				courseList:[],
 				loc:{
 					lon:'',
 					lat:'',
@@ -54,16 +55,34 @@
 			}
 		},
 		onLoad() {
-			this.getData()
+			// this.getData()
+			this.getCourseware()
 		},
 		methods: {
+			getCourseware() {
+				this.http.get(
+					'/api/courseware', {
+						key: this.keyWord
+					},
+					2
+				).then(data => {
+					console.log(data)
+					for (var i in data.rows) {
+						this.courseList.push({
+							text: data.rows[i].name,
+							value: data.rows[i].id
+						})
+					}
+				})
+			},
 			search() {
+				this.courseList = []
 				if (this.keyWord) {
-					this.getData()
+					this.getCourseware()
 				}
 			},
 			choosen(item) {
-				uni.$emit('chooseSchool',item)
+				uni.$emit('chooseCourseware',item)
 				uni.navigateBack({
 					delta:1
 				})
@@ -86,7 +105,7 @@
 			},
 			cancel() {
 				this.keyWord = ''
-				this.getData()
+				// this.getData()
 			}
 		}
 	}

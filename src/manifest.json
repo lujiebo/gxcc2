@@ -1,7 +1,7 @@
 {
-    "name" : "",
-    "appid" : "",
-    "description" : "",
+    "name" : "tmh",
+    "appid" : "__UNI__7229104",
+    "description" : "稻描绘",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
@@ -81,6 +81,7 @@
             "proxy" : {
                 "/api" : {
                     "target" : "https://test.nbyjzh.com/", //自己项目接口域名
+					// "target" : "http://192.168.31.106:3000/", //自己项目接口域名
                     "changeOrigin" : true, //是否跨域
                     "secure" : true, // 设置支持https协议的代理
                     "pathRewrite" : {
@@ -92,12 +93,13 @@
         "sdkConfigs" : {
             "maps" : {
                 "qqmap" : {
-                    "key" : "TKUBZ-D24AF-GJ4JY-JDVM2-IBYKK-KEBCU"
+                    "key" : "MKCBZ-4BNWJ-JQYFU-KZNUE-K7AT7-47BUG"
                 }
             }
         },
         "router" : {
-            "base" : "./"
-        }
+            "base" : "tmh"
+        },
+        "title" : "tmh"
     }
 }
