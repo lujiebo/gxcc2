@@ -41,11 +41,7 @@
 		</view>
 
 		<view class="bottom" v-if="!isEdit">
-<<<<<<< HEAD
 			<button @click="submit()" :disabled="isAble">立即确认</button>
-=======
-			<button @click="submit()">立即确认</button>
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 			<!-- <button v-else class="btn-disabled">参加人数已满</button> -->
 		</view>
 		<u-toast ref="uToast"></u-toast>
@@ -70,10 +66,7 @@
 				courseware_id: '',
 				courseware: '',
 				showCourse: false,
-<<<<<<< HEAD
 				isAble: false,
-=======
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 				list: [{
 						name: '通过',
 						value: '1',
@@ -105,14 +98,8 @@
 			}
 
 			uni.$on('chooseCourseware', (data) => {
-<<<<<<< HEAD
 				this.courseware_id = data.id
 				this.courseware = data.name
-=======
-				console.log(data.text)
-				this.courseware_id = data.value
-				this.courseware = data.text
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 			})
 
 		},
@@ -140,11 +127,8 @@
 				})
 			},
 			submit() {
-<<<<<<< HEAD
 				this.isAble = true //防止多次提交
 
-=======
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 				if (this.role == 103) {
 					this.http.post1('/api/course/teacher/affirm', {
 						id: this.id,
@@ -159,7 +143,6 @@
 								type: 'success',
 								icon: 'true',
 								callback() {
-<<<<<<< HEAD
 									uni.redirectTo({
 										url: 'confirmList?current=0'
 									})
@@ -168,13 +151,6 @@
 									// })
 
 									// uni.$emit('onReload')
-=======
-									uni.navigateBack({
-										delta: 2
-									})
-
-									uni.$emit('onReload')
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 								}
 							});
 
@@ -186,22 +162,15 @@
 								type: 'success',
 								icon: 'true'
 							});
-<<<<<<< HEAD
 							this.isAble = false
-=======
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 						}
 
 					})
 
 				} else if (this.role == 102) {
 					this.http.post1('/api/course/student/affirm', {
-<<<<<<< HEAD
 						id: this.id,
 						result: this.value
-=======
-						id: this.id
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 					}, 2).then((data) => {
 						if (data.status == 1) {
 
@@ -211,7 +180,6 @@
 								type: 'success',
 								icon: 'true',
 								callback() {
-<<<<<<< HEAD
 									uni.redirectTo({
 										url: 'confirmList?current=0'
 									})
@@ -220,16 +188,6 @@
 									// })
 
 									// uni.$emit('onReload')
-=======
-									// uni.navigateTo({
-									// 	url:'confirmList?current=0'
-									// })
-									uni.navigateBack({
-										delta: 2
-									})
-
-									uni.$emit('onReload')
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 								}
 							});
 
@@ -241,10 +199,7 @@
 								type: 'success',
 								icon: 'true'
 							});
-<<<<<<< HEAD
 							this.isAble = false
-=======
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 						}
 
 					})

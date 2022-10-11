@@ -173,11 +173,7 @@
 				this.http.get(
 					'/api/course', {
 						type: 0,
-<<<<<<< HEAD
 						ppc: 4
-=======
-						ppc: 3
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 					},
 					2
 				).then(data => {

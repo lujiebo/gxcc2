@@ -34,16 +34,9 @@
 					name: '场地记录'
 				}],
 				formate:true, //返回值转换
-<<<<<<< HEAD
 				list_url: '/api/course/mine',
 				// status: 'nomore',
 				search_params: {
-=======
-				list_url: '/api/course',
-				// status: 'nomore',
-				search_params: {
-					// order: 0,
->>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 				},
 				list: {
 					list: []
