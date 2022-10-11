@@ -6,7 +6,11 @@
 
 			<view class="card card2" v-for="(item,index) in list.list"
 				@click="tab==0?toCourseDetail(item.id):toHistory(item.id)">
+<<<<<<< HEAD
 				<image style="width: 210rpx;height: 140rpx;" :src="item.courseware_img_path" mode="aspectFill"
+=======
+				<image style="width: 210rpx;height: 140rpx;" src="../../static/v2_index2.jpeg" mode="aspectFill"
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 					lazy-load></image>
 				<view class="content">
 					<view class="title text-ellipsis-1">{{item.courseware_name}}</view>
@@ -36,8 +40,13 @@
 				list_url: '/api/course',
 				// status: 'nomore',
 				search_params: {
+<<<<<<< HEAD
 				},
 				formate:true, //返回值转换
+=======
+					// order: 0,
+				},
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 				tabItem: [{
 						name: '近期课程'
 					},
@@ -66,12 +75,22 @@
 			change1(index) {
 				this.list.list = []
 				this.tab = index;
+<<<<<<< HEAD
 				if (index == 1) //历史课程
 					this.search_params.history = 1
 				else
 					delete this.search_params.history
 				console.log(this.search_params)
 
+=======
+				this.search_params.time = index
+				this.getlist(true)
+			},
+			change2(index) {
+				this.list.activitys = []
+				this.current = index;
+				this.search_params.type = index
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 				this.getlist(true)
 			},
 			toCourseDetail(id) {

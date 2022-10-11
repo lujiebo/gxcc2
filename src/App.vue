@@ -1,4 +1,5 @@
 <script>
+	import VConsole from 'vconsole';
 	export default {
 		globalData: {
 			uiStyle: 'normal',
@@ -11,6 +12,11 @@
 			domain: 'https://test.nbyjzh.com'
 		},
 		onLaunch: function() {
+			const vConsole = new VConsole();
+			
+		
+			
+			
 			console.log('App Launch')
 			// uni.setStorageSync('user-token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvcGxheWdyb3VuZC5teWNlai5jb20iLCJhdWQiOiJodHRwczpcL1wvcGxheWdyb3VuZC5teWNlai5jb20iLCJsYXQiOjE2NTgzNzM2OTEsIm5iZiI6MTY1ODM3MzY5MSwiZXhwIjoxNjg5OTA5NjkxLCJkYXRhIjp7ImFjY291bnRfaWQiOjF9fQ.WsXqB-tYv3idwdOgJNWRioi7qR78STHPqYUD55aoTAA')
 

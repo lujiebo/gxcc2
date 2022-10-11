@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
     "name" : "dmh",
     "appid" : "__UNI__D06B048",
     "description" : "",
+=======
+    "name" : "tmh",
+    "appid" : "__UNI__7229104",
+    "description" : "稻描绘",
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
@@ -81,6 +87,10 @@
             "proxy" : {
                 "/api" : {
                     "target" : "https://test.nbyjzh.com/", //自己项目接口域名
+<<<<<<< HEAD
+=======
+					// "target" : "http://192.168.31.106:3000/", //自己项目接口域名
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
                     "changeOrigin" : true, //是否跨域
                     "secure" : true, // 设置支持https协议的代理
                     "pathRewrite" : {
@@ -97,8 +107,14 @@
             }
         },
         "router" : {
+<<<<<<< HEAD
             "base" : "/dmh"
         },
         "title" : "稻描绘"
+=======
+            "base" : "tmh"
+        },
+        "title" : "tmh"
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
     }
 }

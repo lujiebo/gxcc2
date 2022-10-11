@@ -431,7 +431,7 @@ export default {
 					let data = this.toJson && this.$u.test.jsonString(res.data) ? JSON.parse(res.data) : res.data;
 					if (![200, 201, 204].includes(res.statusCode)) {
 						this.uploadError(index, data);
-					} else if(data.code != 200){
+					} else if(data.status != '1'){
 						this.uploadError(index, data);
 					} else {
 						// 上传成功

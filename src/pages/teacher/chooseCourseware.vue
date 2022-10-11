@@ -7,13 +7,26 @@
 		<view class="panel">
 			<view v-if="courseList && courseList.length>0">
 				<view class="card card2" v-for="(item,index) in courseList" @click="choosen(item)">
+<<<<<<< HEAD:src/pages/teacher/chooseCourseware.vue
 					<image style="width: 120upx;height: 104upx;" :src="item.img_path" mode="aspectFill" lazy-load>
 					</image>
 					<view class="content" style="justify-content: flex-start;">
 						<view class="title text-ellipsis-2" style="flex-shrink: 0;">{{item.name}}</view>
+=======
+					<image 
+					  style="width: 120upx;height: 104upx;" 
+					  src="../../static/v2_index2.jpeg" 
+					  mode="aspectFill"
+					  lazy-load
+					>
+					</image>
+					<view class="content" style="justify-content: flex-start;">
+						<view class="title text-ellipsis-2" style="flex-shrink: 0;">{{item.text}}</view>
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641:src/pages/teacher/chooseCourseware.vue
 						<view>
 							<!-- 							<view class="flex space-between u-m-t-8">
 								<view class="icon-map-pin-line text-ellipsis-2">
+<<<<<<< HEAD:src/pages/teacher/chooseCourseware.vue
 									{{item.source_name}}
 								</view>
 							</view> -->
@@ -26,6 +39,11 @@
 										<view class="tag">{{item.publisher}}</view>
 									</view>
 								</view>
+=======
+									{{item.text}}
+								</view>
+								<view>{{item.text}}</view>
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641:src/pages/teacher/chooseCourseware.vue
 							</view>
 
 						</view>
@@ -51,7 +69,15 @@
 				// status: 'nomore',
 				search_params: {},
 				keyWord: '',
+<<<<<<< HEAD:src/pages/teacher/chooseCourseware.vue
 				courseList: []
+=======
+				courseList:[],
+				loc:{
+					lon:'',
+					lat:'',
+				}
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641:src/pages/teacher/chooseCourseware.vue
 			}
 		},
 		onLoad() {
@@ -60,13 +86,17 @@
 		},
 		methods: {
 			getCourseware() {
+<<<<<<< HEAD:src/pages/teacher/chooseCourseware.vue
 				this.courseList = []
+=======
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641:src/pages/teacher/chooseCourseware.vue
 				this.http.get(
 					'/api/courseware', {
 						key: this.keyWord
 					},
 					2
 				).then(data => {
+<<<<<<< HEAD:src/pages/teacher/chooseCourseware.vue
 					data.rows.forEach((v, index) => {
 						v.img_path = getApp().globalData.domain + v.img_path
 					})
@@ -81,23 +111,45 @@
 					// 		value: data.rows[i].id
 					// 	})
 					// }
+=======
+					console.log(data)
+					for (var i in data.rows) {
+						this.courseList.push({
+							text: data.rows[i].name,
+							value: data.rows[i].id
+						})
+					}
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641:src/pages/teacher/chooseCourseware.vue
 				})
 			},
 			search() {
 				this.courseList = []
+<<<<<<< HEAD:src/pages/teacher/chooseCourseware.vue
 				// if (this.keyWord) {
 				this.getCourseware()
 				// }
 			},
 			choosen(item) {
 				uni.$emit('chooseCourseware', item)
+=======
+				if (this.keyWord) {
+					this.getCourseware()
+				}
+			},
+			choosen(item) {
+				uni.$emit('chooseCourseware',item)
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641:src/pages/teacher/chooseCourseware.vue
 				uni.navigateBack({
 					delta: 1
 				})
 			},
 			cancel() {
 				this.keyWord = ''
+<<<<<<< HEAD:src/pages/teacher/chooseCourseware.vue
 				this.getCourseware()
+=======
+				// this.getData()
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641:src/pages/teacher/chooseCourseware.vue
 			}
 		}
 	}

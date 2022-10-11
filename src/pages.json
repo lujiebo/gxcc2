@@ -41,7 +41,11 @@
 		}, {
 			"path": "pages/index/allCourseList",
 			"style": {
+<<<<<<< HEAD
 				"navigationBarTitleText": "课程列表",
+=======
+				"navigationBarTitleText": "全部课程",
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 				"enablePullDownRefresh": true
 			}
 

@@ -29,10 +29,17 @@ var http = {
 						}
 					} else {
 						uni.showToast({
+<<<<<<< HEAD
 							title: data.data.msg,
 							icon: "none"
 						});
 						reject(data.data.msg);
+=======
+							title: data.msg,
+							icon: "none"
+						});
+						reject(data.msg);
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 					}
 				} else {
 					uni.showToast({
@@ -73,10 +80,17 @@ var http = {
 						resolve(result);
 					} else {
 						uni.showToast({
+<<<<<<< HEAD
 							title: data.data.msg,
 							icon: "none"
 						});
 						reject(data.data.msg);
+=======
+							title: data.message,
+							icon: "none"
+						});
+						reject(data.message);
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 					}
 				} else {
 					uni.showToast({

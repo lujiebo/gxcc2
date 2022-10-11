@@ -66,7 +66,11 @@ export default {
 				})
 			}
 
+<<<<<<< HEAD
 			console.log(this.list.list)
+=======
+			// console.log(this.list.list, getApp().globalData.domain, this.formate)
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 			if (this.list.has_more) {
 				this.list.list_status = 'loadmore';
 				this.status = 'loadmore'

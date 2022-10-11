@@ -369,7 +369,11 @@
 						//首次登录成功 跳转到成功页面 然后到首页获取token
 						if (this.isFirst) {
 							uni.redirectTo({
+<<<<<<< HEAD
 								url: './success?id=' + data.data.id + '&&type=0&&phone=' + this.id //0成功1失败
+=======
+								url: './success?id=' + data.data.id + '&&type=0&&phone=' + that.id //0成功1失败
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 							})
 						} else {
 							//修改登记信息 回到个人中心页面 无需获取token

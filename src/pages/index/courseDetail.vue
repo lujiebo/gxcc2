@@ -30,7 +30,11 @@
 			<button @click="submit()" :class="isApplyed?'btn-disabled':''" :disabled="isApplyed">{{applyBtn}}</button>
 			<!-- <button v-else class="btn-disabled">参加人数已满</button> -->
 		</view>
+<<<<<<< HEAD
 		<u-toast ref="uToast"></u-toast>
+=======
+
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 	</view>
 </template>
 
@@ -55,8 +59,13 @@
 						disabled: false
 					}
 				],
+<<<<<<< HEAD
 				applyBtn: '立即报名',
 				isApplyed: false
+=======
+				applyBtn:'立即报名',
+				isApplyed:false
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 			}
 		},
 		onLoad(option) {
@@ -69,7 +78,11 @@
 			}
 
 			let user = uni.getStorageSync('user')
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 			if (user.type == 102) {
 				this.isEdit = true
 			}
@@ -80,7 +93,11 @@
 					id: this.id
 				}, 2).then((data) => {
 					data.courseware_img_path = getApp().globalData.domain + data.courseware_img_path
+<<<<<<< HEAD
 					if (data.is_apply) {
+=======
+					if(data.is_apply){
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 						this.applyBtn = '已报名'
 						this.isApplyed = true
 					}
@@ -88,6 +105,7 @@
 				})
 			},
 			submit() {
+<<<<<<< HEAD
 				var that = this
 				this.isApplyed = true //提交用来禁用
 				this.http.post1('/api/course/student/apply', {
@@ -116,6 +134,14 @@
 						});
 						this.isApplyed = false
 					}
+=======
+				this.http.post1('/api/course/student/apply', {
+					id: this.id
+				}, 2).then((data) => {
+					uni.navigateTo({
+						url: 'success?type=0&&id=' + this.id
+					})
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 				})
 			}
 		}

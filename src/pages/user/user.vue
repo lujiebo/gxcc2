@@ -58,7 +58,11 @@
 				<view class="show u-m-0">
 					<view class="index2" @click="nav(1)">
 						<view class="icon-daiqueren">
+<<<<<<< HEAD
 							<u-badge :count="data.unaffirm" type="error"
+=======
+							<u-badge :count="1" type="error"
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 								style="position:relative;top:0;left:-15rpx;margin-top: 0;font-size: 14px;line-height: 14px;">
 							</u-badge>
 						</view>
@@ -91,7 +95,11 @@
 				</view>
 				<view class="show u-m-0">
 					<view class="index2" @click="nav(5)">
+<<<<<<< HEAD
 						<view class="icon-changdi1">
+=======
+						<view class="icon-daiqueren">
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 <!-- 							<u-badge :count="1" type="error"
 								style="position:relative;top:0;left:-15rpx;margin-top: 0;font-size: 14px;line-height: 14px;">
 							</u-badge> -->
@@ -121,8 +129,12 @@
 					appointmentcount: 0,
 					score: 0,
 					idcard: '',
+<<<<<<< HEAD
 					join:'',
 					unaffirm:0
+=======
+					join:''
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 				}
 			}
 		},
@@ -170,9 +182,14 @@
 					},
 					2
 				).then(data => {
+<<<<<<< HEAD
 					this.data.join = data.join
 					this.data.unaffirm = data.un_affirm
 					console.log(data)
+=======
+					this.join = data.join
+					console.log(this.join)
+>>>>>>> 81459a5ebd717a118cd68effca4824bb0990f641
 				})
 			},
 			nav(index) {
