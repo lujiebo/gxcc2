@@ -3,105 +3,115 @@
 		<view class="top-bg"></view>
 		<view class="main">
 			<view class="item">
-				<view class="icon icon-jiaoyu" @tap="openDj"></view>
-				<!-- 		<view class="title u-font-36">{{data.realname}}
-					<span class="tag icon-medal-fill u-p-tb-10">运动达人</span>
-				</view> -->
-				<view class="icon-aixin" :class="uiStyle=='normal'?'u-m-t-40':'u-m-t-20'">关怀青少年健康成长</view>
-				<view class="show space-between">
-					<view class="index">
-						<view>{{data.join|getBouble()}}</view>
-						<view>参加次数</view>
-					</view>
-					<view class="index">
-						<view>{{data.volunteercount|getBouble()}}</view>
-						<view>志愿服务次数</view>
-					</view>
-					<view class="index">
-						<view>{{data.collectcount|getBouble()}}</view>
-						<view>场地提供次数</view>
-					</view>
+				<view class="icon icon-gerenzhongxin3" @tap="openDj"></view>
+				<view class="title u-font-36"  @tap="openDj">{{realname}}
+			</view>
+			<view class="icon-aixin" :class="uiStyle=='normal'?'u-m-t-40':'u-m-t-20'">关怀青少年健康成长
+			</view>
+			<view class="show space-between" v-if="role==102">
+				<view class="index">
+					<view>{{data.join_count|getBouble()}}</view>
+					<view>参加次数</view>
+				</view>
+				<view class="index">
+					<view>{{data.rate_count|getBouble()}}</view>
+					<view>评价次数</view>
+				</view>
+				<view class="index">
+					<view></view>
+					<view></view>
+				</view>
+				<view class="index">
+					<view></view>
+					<view></view>
 				</view>
 			</view>
-
-			<!-- 			<view class="flex u-m-tb-22">
-				<view class="item u-p-0 u-p-lr-40 u-m-r-20 u-b-r-8 item2" @click="toyuyue">
-					<view class="title-area">
-						<view class="title">我的预约</view>
-						<view class="action icon-arrow-right-s-line"></view>
-					</view>
-					<view class="content">总预约</view>
-					<view class="font-bold u-font-48 u-m-t-5 u-m-b-10">
-						{{data.appointmentcount|getBouble()}}
-						<span class="content u-m-l-10">次</span>
-					</view>
-					<view class="content">本周预约{{data.thisweekappointment|getBouble()}}次</view>
+			<view class="show space-between" v-if="role==103">
+				<view class="index">
+					<view>{{data.join_count|getBouble()}}</view>
+					<view>志愿服务次数</view>
 				</view>
-				<view class="item u-p-0 u-p-lr-40 u-b-r-8 item2">
-					<view class="title-area">
-						<view class="title">我的积分</view>
-					</view>
-					<view class="content">总积分</view>
-					<view class="font-bold u-font-48 u-m-t-5 u-m-b-10">
-						{{data.score|getBouble()}}
-						<span class="content u-m-l-10">分</span>
-					</view>
-					<view class="content">本周新增{{data.thisweekscore|getBouble()}}分</view>
+				<view class="index">
+					<view>{{data.join_time|getBouble()}}小时</view>
+					<view>志愿服务时长</view>
 				</view>
-			</view> -->
-
-			<view class="item u-p-lr-0 u-m-tb-22" style="height: auto;" v-if="show">
-				<view class="title-area t1">
-					<view class="title">我的课程</view>
-					<view class="action icon-arrow-right-s-line"></view>
+				<view class="index">
+					<view></view>
+					<view></view>
 				</view>
-				<view class="show u-m-0">
-					<view class="index2" @click="nav(1)">
-						<view class="icon-daiqueren">
-							<u-badge :count="data.unaffirm" type="error"
-								style="position:relative;top:0;left:-15rpx;margin-top: 0;font-size: 14px;line-height: 14px;">
-							</u-badge>
-						</view>
-						<view>待确认</view>
-
-					</view>
-					<view class="index2" @click="nav(2)">
-						<view class="icon-yiqueren-xianxing"></view>
-						<view>已确认</view>
-					</view>
-					<view class="index2" @click="nav(3)">
-						<view class="icon-daipingjia">
-							<u-badge :count="1" type="error"
-								style="position:relative;top:0;left: -10rpx;margin-top: 0;">
-							</u-badge>
-						</view>
-						<view>待评价</view>
-					</view>
-					<view class="index2" @click="nav(4)">
-						<view class="icon-star-line"></view>
-						<view>已评价</view>
-					</view>
+				<view class="index">
+					<view></view>
+					<view></view>
 				</view>
 			</view>
-			
-			<view class="item u-p-lr-0 u-m-tb-22" style="height: auto;" v-if="!show">
-				<view class="title-area t1">
-					<view class="title">我的场地</view>
-					<view class="action icon-arrow-right-s-line"></view>
+			<view class="show space-between" v-if="role==104">
+				<view class="index">
+					<view>{{data.join_count|getBouble()}}</view>
+					<view>开课次数</view>
 				</view>
-				<view class="show u-m-0">
-					<view class="index2" @click="nav(5)">
-						<view class="icon-changdi1">
-<!-- 							<u-badge :count="1" type="error"
-								style="position:relative;top:0;left:-15rpx;margin-top: 0;font-size: 14px;line-height: 14px;">
-							</u-badge> -->
-						</view>
-						<view>场地记录</view>			
-					</view>
+				<view class="index">
+					<view>{{data.equipment_count|getBouble()}}</view>
+					<view>设备数量</view>
+				</view>
+				<view class="index">
+					<view></view>
+					<view></view>
+				</view>
+				<view class="index">
+					<view></view>
+					<view></view>
 				</view>
 			</view>
-
 		</view>
+
+		<view class="item u-p-lr-0 u-m-tb-22" style="height: auto;" v-if="show">
+			<view class="title-area t1">
+				<view class="title">我的课程</view>
+				<view class="action icon-arrow-right-s-line"></view>
+			</view>
+			<view class="show u-m-0">
+				<view class="index2" @click="nav(1)">
+					<view class="icon-daiqueren">
+						<u-badge :count="data.un_affirm" type="error"
+							style="position:relative;top:0;left:-15rpx;margin-top: 0;font-size: 14px;line-height: 14px;">
+						</u-badge>
+					</view>
+					<view>待确认</view>
+
+				</view>
+				<view class="index2" @click="nav(2)">
+					<view class="icon-yiqueren-xianxing"></view>
+					<view>已确认</view>
+				</view>
+				<view class="index2" @click="nav(3)">
+					<view class="icon-daipingjia">
+						<u-badge :count="1" type="error" style="position:relative;top:0;left: -10rpx;margin-top: 0;">
+						</u-badge>
+					</view>
+					<view>待评价</view>
+				</view>
+				<view class="index2" @click="nav(4)">
+					<view class="icon-star-line"></view>
+					<view>已评价</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="item u-p-lr-0 u-m-tb-22" style="height: auto;" v-if="!show">
+			<view class="title-area t1">
+				<view class="title">我的场地</view>
+				<view class="action icon-arrow-right-s-line"></view>
+			</view>
+			<view class="show u-m-0">
+				<view class="index2" @click="nav(5)">
+					<view class="icon-changdi1">
+					</view>
+					<view>开课记录</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
 	</view>
 </template>
 
@@ -111,18 +121,11 @@
 			return {
 				uiStyle: getApp().globalData.uiStyle,
 				data: {
-					accountid: null,
-					realname: '',
-					deleted: 0,
-					mobile: '',
-					volunteercount: 0,
-					preachcount: 0,
-					collectcount: 0,
-					appointmentcount: 0,
-					score: 0,
-					idcard: '',
-					join:'',
-					unaffirm:0
+					join_count: '',
+					equipment_count: '',
+					rate_count:'',
+					join_time:'',
+					un_affirm: 0
 				}
 			}
 		},
@@ -138,14 +141,15 @@
 		},
 		onLoad() {
 			let user = uni.getStorageSync('user')
+			this.realname = user.name
+			this.role = user.type
 			if (user.type == 104) {
 				this.show = false
 			} else {
 				this.show = true
 			}
-			
-				this.getCount()
-			// this.getData()
+
+			this.getCount()
 		},
 		methods: {
 			openDj() {
@@ -163,15 +167,17 @@
 					url: url
 				})
 			},
-			getCount(){
+			getCount() {
 				this.http.get(
 					'/api/m', {
-						type: 0
 					},
 					2
 				).then(data => {
-					this.data.join = data.join
-					this.data.unaffirm = data.un_affirm
+					this.data = data
+					
+					// this.data.join_count = data.join_count
+					// this.data.equipment_count = data.equipment_count
+					// this.data.unaffirm = data.un_affirm
 					console.log(data)
 				})
 			},
@@ -196,22 +202,8 @@
 					uni.navigateTo({
 						url: 'courseSiteList'
 					})
-				} 
-			},
-			getData() {
-				this.http.post('info/info', {}, 2).then((data) => {
-					this.data = data
-				})
-			},
-			toyuyue() {
-				uni.navigateTo({
-					url: './myYuyue'
-				})
-			},
-			async onPullDownRefresh() {
-				await this.getData()
-				uni.stopPullDownRefresh();
-			},
+				}
+			}
 		}
 	}
 </script>
@@ -233,7 +225,7 @@
 		background-color: rgba(0, 181, 120, 1);
 		border: 10upx solid rgba(255, 255, 255, 1);
 		border-radius: 50%;
-		font-size: 100upx;
+		font-size: 90upx;
 		display: flex;
 		justify-content: center;
 		align-items: center;

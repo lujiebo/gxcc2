@@ -6,17 +6,16 @@
 			</view> -->
 			<view class="title">请选择身份</view>
 			<view class="content main">
-				<u-radio-group v-model="role"  class='radio'>
-					<u-radio  v-for="(item, index) in list" :key="index" :name="item.value"
-						:disabled="item.disabled">
+				<u-radio-group v-model="role" class='radio'>
+					<u-radio v-for="(item, index) in list" :key="index" :name="item.value" :disabled="item.disabled">
 						{{item.name}}
 					</u-radio>
 				</u-radio-group>
 
 			</view>
-			<button class="btn-l" style="width: 90%;" @click="clickRe()">前往登记</button>
+			<button class="btn-l" style="width: 90%;" @click="click()">前往登记</button>
 		</view>
-
+		<u-toast :type="type" ref="uToast"></u-toast>
 	</view>
 </template>
 
@@ -26,17 +25,16 @@
 			return {
 				uiStyle: getApp().globalData.uiStyle,
 				id: '',
-				time: 3,
 				type: 0, //0成功，1失败
 				tt: null,
 				list: [{
-						name: '教师',
-						value: '103',
+						name: '学生',
+						value: '102',
 						disabled: false
 					},
 					{
-						name: '学生',
-						value: '102',
+						name: '教师',
+						value: '103',
 						disabled: false
 					},
 					{
@@ -46,7 +44,7 @@
 					}
 				],
 				// u-radio-group的v-model绑定的值如果设置为某个radio的name，就会被默认选中
-				role: '103',
+				role: '',
 			}
 		},
 		onLoad(option) {
@@ -56,20 +54,28 @@
 			}
 		},
 		methods: {
-			clickRe() {
+			click() {
+
 				if (this.role == '104') {
 					uni.navigateTo({
-						url: '../site/index?id='+this.id
+						url: '../site/index?id=' + this.id
 					})
 				} else if (this.role == '103') {
 					uni.navigateTo({
-						url: '../teacher/index?id='+this.id
+						url: '../teacher/index?id=' + this.id
 
 					})
 				} else if (this.role == '102') {
 					uni.navigateTo({
-						url: '../student/index?id='+this.id
+						url: '../student/index?id=' + this.id
 					})
+				} else {
+					this.$refs.uToast.show({
+						title: '请选择身份后再登记',
+						position: 'top',
+						type: 'warning',
+						icon: 'true'
+					});
 				}
 			}
 		},

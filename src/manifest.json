@@ -80,7 +80,8 @@
             "proxy" : {
                 "/api" : {
                     "target" : "https://test.nbyjzh.com/", //自己项目接口域名
-					// "target" : "http://192.168.31.106:3000/", //自己项目接口域名
+
+                    // "target" : "http://192.168.31.106:3000/", //自己项目接口域名
                     "changeOrigin" : true, //是否跨域
                     "secure" : true, // 设置支持https协议的代理
                     "pathRewrite" : {
@@ -97,8 +98,15 @@
             }
         },
         "router" : {
-            "base" : "/dmh"
+            "base" : "./",
+            "mode" : "hash"
         },
-        "title" : "稻描绘"
+        "title" : "稻描绘",
+        "unipush" : {
+            "enable" : false
+        }
     }
 }
+//是否跨域
+// 设置支持https协议的代理
+

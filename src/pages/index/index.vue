@@ -29,8 +29,8 @@
 					<view>场地{{siteCount}}个</view>
 				</view>
 				<view class="navItem">
-					<view class="icon-kejianshangchuan u-font-46" style="color: #F99D18;"></view>
-					<view>开课{{courseCount}}门</view>
+					<view class="icon-kejianshangchuan u-font-46" style="color: #ffaaff;"></view>
+					<view>开课{{courseCount}}次</view>
 				</view>
 				<!-- 				<view class="navItem" @click="tabNav(7)">
 					<view class="icon-kejianshangchuan u-font-40" style="color: #FF6A2A;"></view>
@@ -117,6 +117,7 @@
 			// 	uni.setStorageSync('user', '')
 			// 	return;
 			// }
+			console.log(getApp().globalData.uiStyle)
 
 			var token = uni.getStorageSync('user-token')
 			if (token == "") {

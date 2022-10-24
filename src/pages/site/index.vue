@@ -56,6 +56,8 @@
 						</view>
 					</view>
 				</view>
+
+				
 				<uni-forms-item name="device" label="场地设备" class="cd">
 					<view>
 						<button type="success" @click="addDevice" class="btn1">
@@ -63,7 +65,7 @@
 						</button>
 					</view>
 					<view v-for="(item, index) in form.siteEquipment" :key="item.id">
-						<uni-card title="" style="margin: 20px 0px 0px 0px;" class="mycard">
+						<uni-card title="" style="margin: 20px 80px 0px 0px;" class="mycard">
 							<uni-forms-item label="设备名称">
 								<uni-easyinput v-model="item.name" trim="both"></uni-easyinput>
 							</uni-forms-item>
@@ -163,13 +165,14 @@
 		onLoad(option) {
 			var user = uni.getStorageSync('user')
 			this.userId = user.person_id
-			//说明是首次登记
+			//说明不是首次登记
 			if (!option.id) {
 				this.saveBtn = '保存'
 				this.isFirst = false
 
 			} else {
-				this.id = option.id
+				this.id = option.id 
+				this.form.unid = option.id //用来后台绑定
 			}
 
 			this.getCategory()
@@ -203,7 +206,7 @@
 			getCategory() {
 				this.http.get(
 					'/api/sys/item/104', {
-						type: 0
+						ppc:-1
 					},
 					2
 				).then(data => {
@@ -219,7 +222,6 @@
 			getDate() {
 				this.http.get(
 					'/api/sys/item/108', {
-						type: 0,
 						ppc: -1
 					},
 					2
@@ -488,6 +490,7 @@
 		height: 40rpx;
 		font-size: 22rpx;
 		background-color: #5ac725;
+		margin-right: 80px;
 	}
 
 	.cd /deep/ .btn2 {

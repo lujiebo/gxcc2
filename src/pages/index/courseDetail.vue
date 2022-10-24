@@ -27,9 +27,10 @@
 		</view>
 
 		<view class="bottom" v-if="isEdit">
-			<button @click="submit()" :class="isApplyed?'btn-disabled':''" :disabled="isApplyed">{{applyBtn}}</button>
+			<button @click="show = true" :class="isApplyed?'btn-disabled':''" :disabled="isApplyed">{{applyBtn}}</button>
 			<!-- <button v-else class="btn-disabled">参加人数已满</button> -->
 		</view>
+		<myModal v-model="show" :title="modalTitle" @click="submit()"></myModal>
 		<u-toast ref="uToast"></u-toast>
 	</view>
 </template>
@@ -55,8 +56,10 @@
 						disabled: false
 					}
 				],
-				applyBtn: '立即报名',
-				isApplyed: false
+				applyBtn: '我要报名',
+				isApplyed: false,
+				modalTitle: '您确认要报名吗?',
+				show: false
 			}
 		},
 		onLoad(option) {
@@ -87,6 +90,7 @@
 				})
 			},
 			submit() {
+				this.show = false
 				var that = this
 				this.isApplyed = true //提交用来禁用
 				this.http.post1('/api/course/student/apply', {

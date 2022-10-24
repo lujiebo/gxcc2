@@ -145,6 +145,7 @@
 
 			} else {
 				this.id = option.id
+				this.form.unid = option.id //用来后台绑定
 			}
 
 			this.getCategory()
@@ -211,7 +212,7 @@
 			getCategory() {
 				this.http.get(
 					'/api/sys/item/104', {
-						type: 0
+						ppc: -1
 					},
 					2
 				).then(data => {
@@ -227,7 +228,6 @@
 			getCourse() {
 				this.http.get(
 					'/api/sys/item/101', {
-						type: 0
 					},
 					2
 				).then(data => {
@@ -243,7 +243,6 @@
 			getNature() {
 				this.http.get(
 					'/api/sys/item/105', {
-						type: 0
 					},
 					2
 				).then(data => {
@@ -259,7 +258,6 @@
 			getOccuption() {
 				this.http.get(
 					'/api/sys/item/106', {
-						type: 0
 					},
 					2
 				).then(data => {
@@ -275,7 +273,6 @@
 			getEducation() {
 				this.http.get(
 					'/api/sys/item/102', {
-						type: 0
 					},
 					2
 				).then(data => {
@@ -292,7 +289,6 @@
 				var that = this
 				this.http.get(
 					'/api/sys/item/108', {
-						type: 0,
 						ppc: -1
 					},
 					2

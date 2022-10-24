@@ -82,6 +82,10 @@
 		border-radius: 10px;
 		padding: 29px 26px 22px 26px
 	}
+	
+	.content .u-border-bottom{
+		border-bottom: 0rpx;
+	}
 
 	.icon {
 		padding-top: 120rpx;
